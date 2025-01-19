@@ -1,0 +1,767 @@
+{% load static %}
+{% load persian_filters %}
+<!DOCTYPE html>
+<html lang="fa"> <!-- تنظیم زبان به فارسی -->
+  <head>
+    <title>سایت املاک</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'amlak/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'amlak/css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'amlak/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'amlak/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'amlak/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'amlak/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'amlak/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'amlak/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'amlak/css/jquery.timepicker.css' %}">
+
+    <link rel="stylesheet" href="{% static 'amlak/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'amlak/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'amlak/css/style.css' %}">
+
+	<!--my custom css-->
+    <link rel="stylesheet" href="{% static 'amlak/css/my-custom.css' %}">
+
+	<!--Vazir font-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+
+  </head>
+  <body>
+    <div class="top">
+    	<div class="container">
+    		<div class="row d-flex align-items-center">
+    			<div class="col">
+    				<p class="social d-flex">
+    					<a href="#"><span class="icon-facebook"></span></a>
+    					<a href="#"><span class="icon-twitter"></span></a>
+    					<a href="#"><span class="icon-instagram"></span></a>
+							<a href="#"><span class="icon-pinterest"></span></a>
+    				</p>
+    			</div>
+    			<div class="col d-flex justify-content-end">
+    				<a href="tel:091200000000"><p class="num"> {{ 09123456789|persian_numbers }}<span class="icon-phone ml-2" ></span></p></a>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+
+
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+		<div class="container">
+	
+			<!--MENU-->
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav me-auto d-flex flex-row-reverse">
+					<li class="nav-item active"><a href="index.html" class="nav-link">خانه</a></li>
+					<li class="nav-item"><a href="{% url 'properties:properties' %}" class="nav-link">املاک</a></li>
+					<li class="nav-item"><a href="agents.html" class="nav-link">نمایندگان</a></li>
+					<li class="nav-item"><a href="about.html" class="nav-link">درباره ما</a></li>
+					<li class="nav-item"><a href="blog.html" class="nav-link">وبلاگ</a></li>
+					<li class="nav-item"><a href="contact.html" class="nav-link">تماس با ما</a></li>
+					<li class="nav-item cta"><a href="contact.html" class="nav-link ml-lg-2"><span class="icon-user"></span> ورود</a></li>
+					<li class="nav-item cta cta-colored"><a href="contact.html" class="nav-link"><span class="icon-pencil"></span> ثبت‌نام</a></li>
+				</ul>
+			</div>
+
+			<a class="navbar-brand ms-auto" href="index.html">رويال <span>املاک</span></a>
+	
+			<!-- دکمه موبایل -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="نمایش منو">
+				<span class="oi oi-menu"></span> منو
+			</button>
+
+		</div>
+	</nav>
+	<!--end header-->
+	{% block main %}
+	
+	
+	<section class="home-slider owl-carousel">
+		<div class="slider-item" style="background-image:url({% static 'amlak/images/bg_1.jpg' %});">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row no-gutters slider-text align-items-md-end align-items-center justify-content-end">
+					<div class="col-md-6 text p-4 ftco-animate text-right">
+						<h1 class="mb-3">فلوریدا ۵، پاین‌کرست</h1>
+						<span class="location d-block mb-3"><i class="icon-my_location"></i> ملبورن، ویک ۳۰۰۴</span>
+						<p>رودی کوچک به نام دودن از کنارشان عبور می‌کند و منابع طبیعی مورد نیاز را تامین می‌کند. این یک کشور بهشتی است که در آن قطعات جمله‌ها در دهان شما پرواز می‌کنند.</p>
+						<span class="price">۲۸,۰۰۰ دلار</span>
+						<a href="#" class="btn-custom p-3 px-4 bg-primary">مشاهده جزئیات <span class="icon-plus ml-1"></span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="slider-item" style="background-image:url({% static 'amlak/images/bg_2.jpg' %});">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row no-gutters slider-text align-items-md-end align-items-center justify-content-end">
+					<div class="col-md-6 text p-4 ftco-animate text-right">
+						<h1 class="mb-3">۳۰۱۵ خیابان گرند، کوکوواک</h1>
+						<span class="location d-block mb-3"><i class="icon-my_location"></i> ملبورن، ویک ۳۰۰۴</span>
+						<p>رودی کوچک به نام دودن از کنارشان عبور می‌کند و منابع طبیعی مورد نیاز را تامین می‌کند. این یک کشور بهشتی است که در آن قطعات جمله‌ها در دهان شما پرواز می‌کنند.</p>
+						<span class="price">۲۸,۰۰۰ دلار</span>
+						<a href="#" class="btn-custom p-3 px-4 bg-primary">مشاهده جزئیات <span class="icon-plus ml-1"></span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- پایان اسلایدر -->
+	
+
+    <section class="ftco-search">
+    	<div class="container">
+	    	<div class="row">
+				<div class="col-md-12 search-wrap">
+					<h2 class="heading h5 d-flex align-items-center pr-4"><span class="ion-ios-search mr-3"></span>جستجوی ملک</h2>
+					<form action="#" class="search-property">
+						<div class="row" dir="rtl">
+							<div class="col-md">
+								<div class="form-group text-end">
+									<label class="form-label" style="text-align: right; display: block;" for="#">کلیدواژه</label>
+									<div class="form-field">
+										<div class="icon"><span class="icon-pencil"></span></div>
+										<input type="text" class="form-control text-end" placeholder="کلیدواژه">
+									</div>
+								</div>
+							</div>
+							<div class="col-md align-items-end">
+								<div class="form-group text-end">
+									<label class="form-label" style="text-align: right; display: block;" for="#">موقعیت</label>
+									<div class="form-field">
+										<div class="icon"><span class="icon-pencil"></span></div>
+										<input type="text" class="form-control text-end" placeholder="نام شهر/محله">
+									</div>
+								</div>
+							</div>
+							<div class="col-md align-items-end">
+								<div class="form-group text-end">
+									<label class="form-label" style="text-align: right; display: block;" for="#">نوع ملک</label>
+									<div class="form-field">
+										<div class="select-wrap">
+											<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+											<select name="" id="" class="form-control text-end">
+												<option value="">نوع</option>
+												<option value="">تجاری</option>
+												<option value="">- دفتر</option>
+												<option value="">مسکونی</option>
+												<option value="">ویلا</option>
+												<option value="">کاندومینیوم</option>
+												<option value="">آپارتمان</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md align-items-end">
+								<div class="form-group text-end">
+									<label class="form-label" style="text-align: right; display: block;" for="#">وضعیت ملک</label>
+									<div class="form-field">
+										<div class="select-wrap">
+											<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+											<select name="" id="" class="form-control text-end">
+												<option value="">نوع</option>
+												<option value="">اجاره</option>
+												<option value="">فروش</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row" dir="rtl">
+							<div class="col-md align-items-center">
+								<div class="form-group text-end">
+									<label style="text-align: right; display: block;" for="#">حداقل تعداد تخت</label>
+									<div class="form-field">
+										<div class="select-wrap">
+											<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+											<select name="" id="" class="form-control text-end">
+												<option value="">1</option>
+												<option value="">2</option>
+												<option value="">3</option>
+												<option value="">4</option>
+												<option value="">5</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md align-items-end">
+								<div class="form-group text-end">
+									<label style="text-align: right; display: block;" for="#">حداقل تعداد حمام</label>
+									<div class="form-field">
+										<div class="select-wrap">
+											<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+											<select name="" id="" class="form-control text-end">
+												<option value="">1</option>
+												<option value="">2</option>
+												<option value="">3</option>
+												<option value="">4</option>
+												<option value="">5</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md align-items-end">
+								<div class="form-group text-end">
+									<label style="text-align: right; display: block;" for="#">حداقل قیمت</label>
+									<div class="form-field">
+										<div class="select-wrap">
+											<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+											<select name="" id="" class="form-control text-end">
+												<option value="">حداقل قیمت</option>
+												<option value="">1,000 دلار</option>
+												<option value="">5,000 دلار</option>
+												<option value="">10,000 دلار</option>
+												<option value="">50,000 دلار</option>
+												<option value="">100,000 دلار</option>
+												<option value="">200,000 دلار</option>
+												<option value="">300,000 دلار</option>
+												<option value="">400,000 دلار</option>
+												<option value="">500,000 دلار</option>
+												<option value="">600,000 دلار</option>
+												<option value="">700,000 دلار</option>
+												<option value="">800,000 دلار</option>
+												<option value="">900,000 دلار</option>
+												<option value="">1,000,000 دلار</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md align-items-end">
+								<div class="form-group text-end">
+									<label style="text-align: right; display: block;" for="#">حداقل قیمت</label>
+									<div class="form-field">
+										<div class="select-wrap">
+											<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+											<select name="" id="" class="form-control text-end">
+												<option value="">حداقل قیمت</option>
+												<option value="">5,000 دلار</option>
+												<option value="">10,000 دلار</option>
+												<option value="">50,000 دلار</option>
+												<option value="">100,000 دلار</option>
+												<option value="">200,000 دلار</option>
+												<option value="">300,000 دلار</option>
+												<option value="">400,000 دلار</option>
+												<option value="">500,000 دلار</option>
+												<option value="">600,000 دلار</option>
+												<option value="">700,000 دلار</option>
+												<option value="">800,000 دلار</option>
+												<option value="">900,000 دلار</option>
+												<option value="">1,000,000 دلار</option>
+												<option value="">2,000,000 دلار</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md align-items-end">
+								<div class="form-group text-end">
+									<label style="text-align: right; display: block;" for="#">حداقل مساحت </label>
+									<div class="form-field">
+										<div class="icon"><span class="icon-pencil"></span></div>
+										<input type="text" class="form-control text-end" placeholder="حداقل مساحت">
+									</div>
+								</div>
+							</div>
+							<div class="col-md align-items-end">
+								<div class="form-group text-end">
+									<label style="text-align: right; display: block;" for="#">حداکثر مساحت</label>
+									<div class="form-field">
+										<div class="icon"><span class="icon-pencil"></span></div>
+										<input type="text" class="form-control text-end" placeholder="حداکثر مساحت">
+									</div>
+								</div>
+							</div>
+							<div class="col-md align-self-end">
+								<div class="form-group text-end">
+									<div class="form-field">
+										<input type="submit" value="جستجو" class="form-control btn btn-primary text-end">
+									</div>
+								</div>
+							</div>
+						</div>
+						
+		
+	        	</form>
+					</div>
+	    	</div>
+	    </div>
+    </section>
+	<section class="ftco-section bg-light">
+		<div class="container">
+		  <div class="row d-flex">
+			<div class="col-md-3 d-flex align-self-stretch ftco-animate">
+			  <div class="media block-6 services py-4 d-block text-center">
+				<div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-pin"></span></div></div>
+				<div class="media-body p-2 mt-2">
+				  <h3 class="heading mb-3">پیدا کردن مکان‌ها در هر نقطه از جهان</h3>
+				  <p>رودی کوچک به نام دودن از کنار مکان آنها عبور می‌کند و تأمین می‌کند.</p>
+				</div>
+			  </div>      
+			</div>
+			<div class="col-md-3 d-flex align-self-stretch ftco-animate">
+			  <div class="media block-6 services py-4 d-block text-center">
+				<div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-detective"></span></div></div>
+				<div class="media-body p-2 mt-2">
+				  <h3 class="heading mb-3">ما مامورانی با تجربه داریم</h3>
+				  <p>رودی کوچک به نام دودن از کنار مکان آنها عبور می‌کند و تأمین می‌کند.</p>
+				</div>
+			  </div>    
+			</div>
+			<div class="col-md-3 d-flex align-self-stretch ftco-animate">
+			  <div class="media block-6 services py-4 d-block text-center">
+				<div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-house"></span></div></div>
+				<div class="media-body p-2 mt-2">
+				  <h3 class="heading mb-3">خرید و اجاره املاک مدرن</h3>
+				  <p>رودی کوچک به نام دودن از کنار مکان آنها عبور می‌کند و تأمین می‌کند.</p>
+				</div>
+			  </div>      
+			</div>
+			<div class="col-md-3 d-flex align-self-stretch ftco-animate">
+			  <div class="media block-6 services py-4 d-block text-center">
+				<div class="d-flex justify-content-center"><div class="icon"><span class="flaticon-purse"></span></div></div>
+				<div class="media-body p-2 mt-2">
+				  <h3 class="heading mb-3">کسب درآمد</h3>
+				  <p>رودی کوچک به نام دودن از کنار مکان آنها عبور می‌کند و تأمین می‌کند.</p>
+				</div>
+			  </div>      
+			</div>
+		  </div>
+		</div>
+	  </section>
+	  
+    
+	  <section class="ftco-section ftco-properties">
+		<div class="container">
+		  <div class="row justify-content-center mb-5 pb-3">
+			<div class="col-md-7 heading-section text-center ftco-animate">
+			  <span class="subheading">پست‌های اخیر</span>
+			  <h2 class="mb-4">املاک اخیر</h2>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-12">
+			  <div class="properties-slider owl-carousel ftco-animate">
+			  {% for obj in properties %}
+			  <div class="item">
+				<div class="properties">
+					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ obj.thumbnail }}');">
+                        <div class="icon d-flex justify-content-center align-items-center">
+                            <span class="icon-search2"></span>
+                        </div>
+                    </a>
+                    <div class="text p-3">
+                        <span class="status sale">{{obj.status}}</span>
+                        <div class="d-flex">
+                            <div class="two text-left">
+                                <span class="price">{{obj.price|persian_numbers}} <span class="text-black-50 fs-6 text-muted"><small>میلیارد</small></span></span>
+                            </div>
+                            <div class="one text-right">
+                                <h3><a href="property-single.html">{{obj.title|persian_numbers}}</a></h3>
+                                <p>{{obj.type}}</p>
+                            </div>
+                        </div>
+                        <p class="text-right">{{obj.description|persian_numbers}}</p>
+                        <hr>
+                        <p class="bottom-area d-flex">
+                            <span><i class="flaticon-selection"></i> {{obj.area|persian_numbers}}متر</span>
+                            <span class="ml-auto"><i class="flaticon-bathtub"></i> {{obj.bathroom|persian_numbers}}</span>
+                            <span><i class="flaticon-bed"></i> {{obj.bedroom|persian_numbers}}</span>
+                        </p>
+                    </div>
+				</div>
+			  </div> 
+			  {% endfor %}
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </section><!-- end section-->
+	  
+
+	  <section class="ftco-section bg-light">
+		<div class="container">
+			<div class="row justify-content-center mb-5 pb-3">
+				<div class="col-md-7 heading-section text-center ftco-animate">
+					<span class="subheading">پیشنهادات ویژه</span>
+					<h2 class="mb-4">پیشنهادهای برتر املاک</h2>
+				</div>
+			</div>    
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<!-- شروع آیتم ملک -->
+				<div class="col-sm col-md-6 col-lg ftco-animate">
+					<div class="properties">
+						<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url({% static 'amlak/images/properties-1.jpg)' %};">
+							<div class="icon d-flex justify-content-center align-items-center">
+								<span class="icon-search2"></span>
+							</div>
+						</a>
+						<div class="text p-3">
+							<span class="status sale">فروش</span>
+							<div class="d-flex">
+								<div class="two text-left">
+									<span class="price">۲۰٬۰۰۰ دلار</span>
+								</div>
+								<div class="one text-right">
+									<h3><a href="#">خیابان شمالی پارچمور</a></h3>
+									<p>آپارتمان</p>
+								</div>
+							</div>
+							<p class="text-right">دور، پشت کوه‌های کلمه و در دورترین کشورها.</p>
+							<hr>
+							<p class="bottom-area d-flex">
+								<span><i class="flaticon-selection"></i> ۲۵۰ مترمربع</span>
+								<span class="ml-auto"><i class="flaticon-bathtub"></i> ۳</span>
+								<span><i class="flaticon-bed"></i> ۴</span>
+							</p>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</section>
+	<!--end section-->
+	
+
+    <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url({% static 'amlak/images/bg_1.jpg)' %};">
+		<div class="container">
+			<div class="row justify-content-center mb-3 pb-3">
+				<div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+					<h2 class="mb-4">چند حقیقت جالب</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-10">
+					<div class="row d-flex flex-row-reverse">
+						<div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+							<div class="block-18 text-center">
+								<div class="text">
+									<strong class="number" data-number="9000">0</strong>
+									<span>مشتریان راضی</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+							<div class="block-18 text-center">
+								<div class="text">
+									<strong class="number" data-number="10000">0</strong>
+									<span>املاک</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+							<div class="block-18 text-center">
+								<div class="text">
+									<strong class="number" data-number="1000">0</strong>
+									<span>نمایندگان</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+							<div class="block-18 text-center">
+								<div class="text">
+									<strong class="number" data-number="100">0</strong>
+									<span>جوایز</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+
+
+    <section class="ftco-section testimony-section bg-light">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-8 ftco-animate">
+					<div class="row ftco-animate">
+						<div class="col-md-12">
+							<div class="carousel-testimony owl-carousel ftco-owl">
+								<div class="item">
+									<div class="testimony-wrap py-4 pb-5">
+										<div class="user-img mb-4" style="background-image: url({% static 'amlak/images/person_1.jpg' %})">
+											<span class="quote d-flex align-items-center justify-content-center">
+												<i class="icon-quote-left"></i>
+											</span>
+										</div>
+										<div class="text text-center">
+											<p class="mb-4">
+												یک رودخانه کوچک به نام دودن از نزدیکی محل آنها می‌گذرد و تمام نیازهای آن را تامین می‌کند. اینجا یک کشور بهشتی است که در آن قطعات سرخ شده جملات به دهانتان پرواز می‌کنند.
+											</p>
+											<p class="name">راجر اسکات</p>
+											<span class="position">مشتری</span>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="testimony-wrap py-4 pb-5">
+										<div class="user-img mb-4" style="background-image: url({% static 'amlak/images/person_2.jpg' %})">
+											<span class="quote d-flex align-items-center justify-content-center">
+												<i class="icon-quote-left"></i>
+											</span>
+										</div>
+										<div class="text text-center">
+											<p class="mb-4">
+												یک رودخانه کوچک به نام دودن از نزدیکی محل آنها می‌گذرد و تمام نیازهای آن را تامین می‌کند. اینجا یک کشور بهشتی است که در آن قطعات سرخ شده جملات به دهانتان پرواز می‌کنند.
+											</p>
+											<p class="name">راجر اسکات</p>
+											<span class="position">نماینده</span>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="testimony-wrap py-4 pb-5">
+										<div class="user-img mb-4" style="background-image: url({% static 'amlak/images/person_3.jpg' %})">
+											<span class="quote d-flex align-items-center justify-content-center">
+												<i class="icon-quote-left"></i>
+											</span>
+										</div>
+										<div class="text text-center">
+											<p class="mb-4">
+												یک رودخانه کوچک به نام دودن از نزدیکی محل آنها می‌گذرد و تمام نیازهای آن را تامین می‌کند. اینجا یک کشور بهشتی است که در آن قطعات سرخ شده جملات به دهانتان پرواز می‌کنند.
+											</p>
+											<p class="name">راجر اسکات</p>
+											<span class="position">مشتری</span>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="testimony-wrap py-4 pb-5">
+										<div class="user-img mb-4" style="background-image: url({% static 'amlak/images/person_1.jpg' %})">
+											<span class="quote d-flex align-items-center justify-content-center">
+												<i class="icon-quote-left"></i>
+											</span>
+										</div>
+										<div class="text text-center">
+											<p class="mb-4">
+												یک رودخانه کوچک به نام دودن از نزدیکی محل آنها می‌گذرد و تمام نیازهای آن را تامین می‌کند. اینجا یک کشور بهشتی است که در آن قطعات سرخ شده جملات به دهانتان پرواز می‌کنند.
+											</p>
+											<p class="name">راجر اسکات</p>
+											<span class="position">مشتری</span>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="testimony-wrap py-4 pb-5">
+										<div class="user-img mb-4" style="background-image: url({% static 'amlak/images/person_1.jpg' %})">
+											<span class="quote d-flex align-items-center justify-content-center">
+												<i class="icon-quote-left"></i>
+											</span>
+										</div>
+										<div class="text text-center">
+											<p class="mb-4">
+												یک رودخانه کوچک به نام دودن از نزدیکی محل آنها می‌گذرد و تمام نیازهای آن را تامین می‌کند. اینجا یک کشور بهشتی است که در آن قطعات سرخ شده جملات به دهانتان پرواز می‌کنند.
+											</p>
+											<p class="name">راجر اسکات</p>
+											<span class="position">مشتری</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!--end section-->
+	
+
+
+    <!--<section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <span class="subheading">Read Articles</span>
+            <h2>Recent Blog</h2>
+          </div>
+        </div>
+        <div class="row d-flex">
+          <div class="col-md-3 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20" style="background-image: url('{% static 'amlak/images/image_1.jpg');">
+              </a>
+              <div class="text mt-3 d-block">
+                <h3 class="heading mt-3"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                <div class="meta mb-3">
+                  <div><a href="#">Dec 6, 2018</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20" style="background-image: url('{% static 'amlak/images/image_2.jpg');">
+              </a>
+              <div class="text mt-3">
+                <h3 class="heading mt-3"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                <div class="meta mb-3">
+                  <div><a href="#">Dec 6, 2018</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20" style="background-image: url('{% static 'amlak/images/image_3.jpg');">
+              </a>
+              <div class="text mt-3">
+                <h3 class="heading mt-3"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                <div class="meta mb-3">
+                  <div><a href="#">Dec 6, 2018</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20" style="background-image: url('{% static 'amlak/images/image_4.jpg');">
+              </a>
+              <div class="text mt-3">
+                <h3 class="heading mt-3"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                <div class="meta mb-3">
+                  <div><a href="#">Dec 6, 2018</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>-->
+		
+	<!--<section class="ftco-section-parallax">
+      <div class="parallax-img d-flex align-items-center">
+        <div class="container">
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+              <h2>Subcribe to our Newsletter</h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
+              <div class="row d-flex justify-content-center mt-5">
+                <div class="col-md-8">
+                  <form action="#" class="subscribe-form">
+                    <div class="form-group d-flex">
+                      <input type="text" class="form-control" placeholder="Enter email address">
+                      <input type="submit" value="Subscribe" class="submit px-3">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>-->
+
+	{% endblock main %}
+	<!--start footer-->
+	<footer class="ftco-footer ftco-bg-dark ftco-section" dir="rtl">
+		<div class="container">
+		  <div class="row mb-5">
+			<div class="col-md">
+			  <div class="ftco-footer-widget mb-4">
+				<h2 class="ftco-heading-2 text-right">املاک رویال</h2>
+				<p class="text-right">خیلی دور، پشت کوه‌های کلمات، دور از کشورهای ووکالیا و کنسونانتیا، متون کور زندگی می‌کنند.</p>
+				<ul class="ftco-footer-social list-unstyled float-md-right mt-5">
+				  <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+				  <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+				  <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+				</ul>
+			  </div>
+			</div>
+			<div class="col-md">
+			  <div class="ftco-footer-widget mb-4 mr-md-5">
+				
+				<ul class="list-unstyled">
+				  <h2 class="ftco-heading-2 text-right">خرید</h2>
+				  <li><a href="#" class="py-2 d-block text-right">خانه‌های فروشی</a></li>
+				  <li><a href="#" class="py-2 d-block text-right">خانه‌های بازدید</a></li>
+				  <li><a href="#" class="py-2 d-block text-right">لیست‌های جدید</a></li>
+				  <li><a href="#" class="py-2 d-block text-right">کاهش قیمت اخیر</a></li>
+				  <li><a href="#" class="py-2 d-block text-right">خانه‌های خارج از بازار</a></li>
+				</ul>
+			  </div>
+			</div>
+			<div class="col-md">
+			  <div class="ftco-footer-widget mb-4">
+				
+				<ul class="list-unstyled">
+				  <h2 class="ftco-heading-2 text-right">فروش</h2>
+				  <li><a href="#" class="py-2 d-block text-right">خانه‌ خود را بفروشید</a></li>
+				  <li><a href="#" class="py-2 d-block text-right">ارزش‌یابی خانه بگیرید</a></li>
+				  <li><a href="#" class="py-2 d-block text-right">قیمت خانه محلی</a></li>
+				  <li><a href="#" class="py-2 d-block text-right">راهنماها و قوانین</a></li>
+				  <li><a href="#" class="py-2 d-block text-right">سایر موارد</a></li>
+				</ul>
+			  </div>
+			</div>
+			<div class="col-md">
+			  <div class="ftco-footer-widget mb-4">
+				  <ul class="list-unstyled">
+					<h2 class="ftco-heading-2 text-right">سؤالی دارید؟</h2>
+					<li class="text-right"><span class="icon icon-map-marker ml-3 text-white"></span>خیابان ساختگی، مانتین ویو، سانفرانسیسکو، کالیفرنیا، آمریکا</li>
+					<li><a href="tel:09120000000" class="py-2 d-block text-right">۹۸۹۱۲۰۰۰۰۰۰۰<span class="icon icon-phone ml-3"></span></a></li>
+					<li><a href="mailto:royalestate@info" class="py-2 d-block text-right">royalestate@info<span class="icon icon-envelope ml-3"></span></a></li>
+				  </ul>
+			  </div>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-12 text-center">
+			  <p>
+				حق کپی‌رایت &copy;<script>document.write(new Date().getFullYear());</script> تمامی حقوق محفوظ است | ساخته شده توسط <a href="#" target="_blank">متین هاشم‌نیا</a>
+			  </p>
+			</div>
+		  </div>
+		</div>
+	  </footer>
+	  <!--end footer-->
+	  
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="{% static 'amlak/js/jquery.min.js' %}"></script>
+  <script src="{% static 'amlak/js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'amlak/js/popper.min.js' %}"></script>
+  <script src="{% static 'amlak/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'amlak/js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'amlak/js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'amlak/js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'amlak/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'amlak/js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'amlak/js/aos.js' %}"></script>
+  <script src="{% static 'amlak/js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'amlak/js/bootstrap-datepicker.js' %}"></script>
+  <script src="{% static 'amlak/js/jquery.timepicker.min.js' %}"></script>
+  <script src="{% static 'amlak/js/scrollax.min.js' %}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{% static 'amlak/js/google-map.js' %}"></script>
+  <script src="{% static 'amlak/js/main.js' %}"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,170 @@
+{% extends "properties/index.html" %}
+{% load static %}
+{% load persian_filters %}
+
+{% block main %}
+
+
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="row">
+          <div class="col-md-12 ftco-animate">
+            <div class="single-slider owl-carousel">
+              {% for img in property.images.all %}
+              <div class="item">
+                <div class="properties-img" style="background-image: url('{{img.image.url}}');"></div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="col-md-12 Properties-single mt-4 mb-5 ftco-animate text-right">
+            <h2>{{property.title|persian_numbers}}</h2>
+            <p class="rate mb-4">
+              <span class="loc"><a href="#">{{property.location}}<i class="icon-map"></i></a></span>
+            </p>
+            <p>{{property.description|persian_numbers}}</p>
+            <div class="d-md-flex mt-5 mb-5 justify-content-end text-dark">
+              <ul class="ml-md-5" dir="rtl">
+                <li><h6>متراژ زمین: {{property.area|persian_numbers}} متر </h6></li>
+                <li><h6>اتاق خواب: {{property.bedroom|persian_numbers}}</h6></li>
+                <li><h6>دست‌شویی:  {{property.bathroom|persian_numbers}}</h6></li>
+                <li><h6>پارکینگ:  دارد</h6></li>
+                <li><h6>آسانسور:  دارد</h6></li>
+              </ul>
+              <ul class="ml-md-5 custom-list text-end" dir="rtl">
+                <li><h6>مساحت سطح طبقه:  {{property.area|persian_numbers}}</h6></li>
+                <li><h6>سال ساخت:  {{property.built_year|persian_numbers}}</h6></li>
+                <li><h6>طبقات:  تکمیل شود</h6></li>
+                <li><h6>سقف: جدید</h6></li>
+                <li><h6>انباری: دارد</h6></li>
+              </ul>
+            </div>
+            <!--<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>-->
+          </div>
+          <div class="col-md-12 properties-single ftco-animate mb-5 mt-5">
+            <h4 class="mb-4 text-right">ملک‌های مرتبط</h4>
+            <div class="row">
+            {% for obj in relateds %}
+              <div class="col-md-6 ftco-animate">
+                <div class="properties">
+                    <a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ obj.thumbnail }}');">
+                        <div class="icon d-flex justify-content-center align-items-center">
+                            <span class="icon-search2"></span>
+                        </div>
+                    </a>
+                    <div class="text p-3">
+                        <span class="status sale">{{obj.status}}</span>
+                        <div class="d-flex">
+                            <div class="two text-left">
+                                <span class="price">{{obj.price|persian_numbers}} <span class="text-black-50 fs-6 text-muted"><small>میلیارد</small></span></span>
+                            </div>
+                            <div class="one text-right">
+                                <h3><a href="property-single.html">{{obj.title|persian_numbers}}</a></h3>
+                                <p>{{obj.type}}</p>
+                            </div>
+                        </div>
+                        <p class="text-right">{{obj.description|persian_numbers}}</p>
+                        <hr>
+                        <p class="bottom-area d-flex">
+                            <span><i class="flaticon-selection"></i> {{obj.area|persian_numbers}}متر</span>
+                            <span class="ml-auto"><i class="flaticon-bathtub"></i> {{obj.bathroom|persian_numbers}}</span>
+                            <span><i class="flaticon-bed"></i> {{obj.bedroom|persian_numbers}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+          </div>
+
+        </div>
+      </div> <!-- .col-md-8 -->
+      <div class="col-lg-4 sidebar ftco-animate">
+        <!--<div class="sidebar-box">
+          <form action="#" class="search-form">
+            <div class="form-group">
+              <span class="icon fa fa-search"></span>
+              <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+            </div>
+          </form>
+        </div>-->
+        <div class="ftco-animate text-right">
+          <p class="breadcrumbs"><span class="ml-2"><a href="{% url 'properties:index' %}">خانه</a></span> <span class="ml-2"><a href="{% url 'properties:properties' %}">ملک‌ها</a></span> <span class="ml-2">{{property.title|persian_numbers}}</span></p>
+        </div>
+        <div class="sidebar-box ftco-animate">
+          <div class="categories text-right">
+            <h3 class="text-end">دسته‌بندی‌ها</h3>
+            <ul class="list-unstyled">
+              <li class="d-flex justify-content-between flex-row-reverse">
+                <a href="#" class="text-decoration-none">ملک</a> 
+                <span>{{'12'|persian_numbers}}</span>
+              </li>
+              <li class="d-flex justify-content-between flex-row-reverse">
+                <a href="#" class="text-decoration-none">خانه</a>
+                <span>(22)</span>
+              </li>
+              <li class="d-flex justify-content-between flex-row-reverse">
+                <a href="#" class="text-decoration-none">خانه ویلایی</a>
+                <span>(37)</span>
+              </li>
+              <li class="d-flex justify-content-between flex-row-reverse">
+                <a href="#" class="text-decoration-none">ویلا</a>
+                <span>(42)</span>
+              </li>
+              <li class="d-flex justify-content-between flex-row-reverse">
+                <a href="#" class="text-decoration-none">آپارتمان</a>
+                <span>(14)</span>
+              </li>
+              <li class="d-flex justify-content-between flex-row-reverse">
+                <a href="#" class="text-decoration-none">مجتمع مسکونی</a>
+                <span>(140)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sidebar-box ftco-animate">
+          <h3>Tag Cloud</h3>
+          <div class="tagcloud">
+            <a href="#" class="tag-cloud-link">dish</a>
+            <a href="#" class="tag-cloud-link">menu</a>
+            <a href="#" class="tag-cloud-link">food</a>
+            <a href="#" class="tag-cloud-link">sweet</a>
+            <a href="#" class="tag-cloud-link">tasty</a>
+            <a href="#" class="tag-cloud-link">delicious</a>
+            <a href="#" class="tag-cloud-link">desserts</a>
+            <a href="#" class="tag-cloud-link">drinks</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> <!-- .section -->
+
+<section class="ftco-section-parallax">
+  <div class="parallax-img d-flex align-items-center">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+          <h2>Subcribe to our Newsletter</h2>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
+          <div class="row d-flex justify-content-center mt-5">
+            <div class="col-md-8">
+              <form action="#" class="subscribe-form">
+                <div class="form-group d-flex">
+                  <input type="text" class="form-control" placeholder="Enter email address">
+                  <input type="submit" value="Subscribe" class="submit px-3">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock main %}
