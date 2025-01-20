@@ -1,0 +1,154 @@
+
+{% load persian_filters %}
+<section class="ftco-search">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 search-wrap">
+                <h2 class="heading h5 d-flex align-items-center pr-4"><span class="ion-ios-search mr-3"></span>جستجوی ملک</h2>
+                <form class="search-property" method='get' action="{% url 'properties:properties' %}">
+                    <div class="row" dir="rtl">
+                        <div class="col-md">
+                            <div class="form-group text-end">
+                                <label class="form-label" style="text-align: right; display: block;" for="#">کلیدواژه</label>
+                                <div class="form-field">
+                                    <div class="icon"><span class="icon-pencil"></span></div>
+                                    <input type="text" name="title" class="form-control text-end" placeholder="کلیدواژه" value='{{request.GET.title}}'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md align-items-end">
+                            <div class="form-group text-end">
+                                <label class="form-label" style="text-align: right; display: block;" for="#">موقعیت</label>
+                                <div class="form-field">
+                                    <div class="icon"><span class="icon-pencil"></span></div>
+                                    <input type="text" name="location" class="form-control text-end" placeholder="نام شهر/محله" value='{{request.GET.location}}'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md align-items-end">
+                            <div class="form-group text-end">
+                                <label class="form-label" style="text-align: right; display: block;" for="#">نوع ملک</label>
+                                <div class="form-field">
+                                    <div class="select-wrap">
+                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                            <div class="text-dark">
+                                                <select name="type" class="form-control text-end" value='{{request.GET.type}}'>
+                                                    <option class="text-dark" value="">نوع</option>
+                                                    <option class="text-dark">تجاری</option>
+                                                    <option class="text-dark">دفتر</option>
+                                                    <option class="text-dark">مسکونی</option>
+                                                    <option class="text-dark">ویلا</option>
+                                                    <option class="text-dark" >آپارتمان</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md align-items-end">
+                            <div class="form-group text-end">
+                                <label class="form-label" style="text-align: right; display: block;" for="#">وضعیت ملک</label>
+                                <div class="form-field">
+                                    <div class="select-wrap">
+                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                        <select name="status" id="" class="form-control text-end" value='{{request.GET.status}}'>
+                                            <option class="text-dark" value="">نوع</option>
+                                            <option class="text-dark">اجاره</option>
+                                            <option class="text-dark">فروش</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row" dir="rtl">
+                        <div class="col-md align-items-center">
+                            <div class="form-group text-end">
+                                <label style="text-align: right; display: block;" for="#">حداقل اتاق‌خواب</label>
+                                <div class="form-field">
+                                    <div class="select-wrap">
+                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                        <select name="bedroom" id="" class="form-control text-end" value='{{request.GET.bedroom}}'>
+                                            <option class="text-dark" value="1">{{1|persian_numbers}}</option>
+                                            <option class="text-dark" value="2">{{2|persian_numbers}}</option>
+                                            <option class="text-dark" value="3">{{3|persian_numbers}}</option>
+                                            <option class="text-dark" value="4">{{4|persian_numbers}}</option>
+                                            <option class="text-dark" value="5 value="1" ">{{5|persian_numbers}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md align-items-end">
+                            <div class="form-group text-end">
+                                <label style="text-align: right; display: block;" for="#">حداقل تعداد حمام</label>
+                                <div class="form-field">
+                                    <div class="select-wrap">
+                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                        <select name="bathroom" id="" class="form-control text-end" value='{{request.GET.bathroom}}'>
+                                            <option class="text-dark" value="1" >{{1|persian_numbers}}</option>
+                                            <option class="text-dark" value="2" >{{2|persian_numbers}}</option>
+                                            <option class="text-dark" value="3" >{{3|persian_numbers}}</option>
+                                            <option class="text-dark" value="4" >{{4|persian_numbers}}</option>
+                                            <option class="text-dark" value="5" >{{5|persian_numbers}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md align-items-end">
+                            <div class="form-group text-end">
+                                <label style="text-align: right; display: block;" for="#">حداقل قیمت</label>
+                                <div class="form-field">
+                                    <div class="select-wrap">
+                                        <div class="icon"><span class="icon-pencil"></span></div>
+                                        <input type="text" class="form-control text-end" name="min_price" placeholder="حداقل قیمت" value="{{request.GET.min_price}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md align-items-end">
+                            <div class="form-group text-end">
+                                <label style="text-align: right; display: block;" for="max-price">حداکثر قیمت</label>
+                                <div class="form-field">
+                                    <div class="form-field">
+                                        <div class="icon"><span class="icon-pencil"></span></div>
+                                        <input class="form-control text-end" type="text" name="max_price" placeholder="حداکثر قیمت" value="{{request.GET.max_price}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md align-items-end">
+                            <div class="form-group text-end">
+                                <label style="text-align: right; display: block;" for="#">حداقل مساحت </label>
+                                <div class="form-field">
+                                    <div class="icon"><span class="icon-pencil"></span></div>
+                                    <input type="text" name="min_area" class="form-control text-end" placeholder="حداقل مساحت" value='{{request.GET.min_area}}'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md align-items-end">
+                            <div class="form-group text-end">
+                                <label style="text-align: right; display: block;" for="#">حداکثر مساحت</label>
+                                <div class="form-field">
+                                    <div class="icon"><span class="icon-pencil"></span></div>
+                                    <input type="text" name="max_area" class="form-control text-end" placeholder="حداکثر مساحت" value='{{request.GET.max_area}}'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md align-self-end">
+                            <div class="form-group text-end">
+                                <div class="form-field">
+                                    <input type="submit" value="جستجو" class="form-control btn btn-primary text-end">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+    
+            </form>
+                </div>
+        </div>
+    </div>
+</section>

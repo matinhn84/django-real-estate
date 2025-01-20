@@ -1,0 +1,82 @@
+{% extends "properties/index.html" %}
+{% load static %}
+{% load persian_filters %}
+
+{% block main %}
+
+<!--START MAIN-->
+<div class="hero-wrap" style="background-image: url('images/bg_1.jpg');">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate text-center">
+        <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'properties:index' %}">خانه</a></span> <span>تماس‌باما</span></p>
+        <h1 class="mb-3 bread">تماس باما</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="ftco-section contact-section bg-light" dir="rtl">
+  <div class="container">
+    <div class="row d-flex mb-5 contact-info">
+      <div class="col-md-12 mb-4 text-right">
+        <h2 class="h3">اطلاعات تماس</h2>
+      </div>
+      <div class="w-100"></div>
+      <div class="col-md-3 d-flex text-right">
+        <div class="info bg-white p-4">
+          <p><span>آدرس:</span> <span class="text-dark">تهران، بلوار فردوسی نبش خیابان مولوی</span></p>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex text-right">
+        <div class="info bg-white p-4">
+          <p><span>شماره تماس:</span> <a href="tel://1234567920">{{2132122|persian_numbers}}+</a></p>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex text-right">
+        <div class="info bg-white p-4">
+          <p><span>ایمیل:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+        </div>
+      </div>
+      
+    </div>
+    <div class="row block-9">
+      <div class="col-md-6 order-md-last d-flex">
+        <form class="bg-white p-5 contact-form" id="form" method="post" action='{% url "properties:contact" %}#form'>
+            {% csrf_token %}
+          <div class="form-group">
+            <input type="text" name=name class="form-control" placeholder="نام شما">
+          </div>
+          <div class="form-group">
+            <input type="text" name=email class="form-control" placeholder="ایمیل شمل">
+          </div>
+          <div class="form-group">
+            <input type="text" name=subject class="form-control" placeholder="موضوع">
+          </div>
+          <div class="form-group">
+            <textarea name="message" cols="30" rows="7" class="form-control" placeholder="پیام"></textarea>
+          </div>
+          <div class="form-group text-right">
+            <input type="submit" value="ارسال پیام" class="btn btn-primary py-3 px-5">
+          </div>
+            <!-- MESSAGE FOR SENDING MESSAGE SUCCSECFULLY -->
+            <div class="text-info text-right">
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+            </div>
+        </form>
+      
+      </div>
+
+      <div class="col-md-6 d-flex">
+        <div id="map" class="bg-white"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock main %}

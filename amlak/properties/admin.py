@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Property, Image
+from .models import Property, Image, Category, Contact
 # Register your models here.
 
 class PropertyImageInline(admin.TabularInline):
@@ -11,5 +11,6 @@ class PropertyAdmin(admin.ModelAdmin):
     inlines = [PropertyImageInline]
 
 admin.site.register(Property, PropertyAdmin)
-admin.site.register(Image)
+admin.site.register(Category)
+admin.site.register(Contact)
 

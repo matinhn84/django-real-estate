@@ -28,18 +28,18 @@
             <p>{{property.description|persian_numbers}}</p>
             <div class="d-md-flex mt-5 mb-5 justify-content-end text-dark">
               <ul class="ml-md-5" dir="rtl">
-                <li><h6>متراژ زمین: {{property.area|persian_numbers}} متر </h6></li>
+                <li><h6>متراژ زمین: {{property.lot_area|persian_numbers}} متر </h6></li>
                 <li><h6>اتاق خواب: {{property.bedroom|persian_numbers}}</h6></li>
                 <li><h6>دست‌شویی:  {{property.bathroom|persian_numbers}}</h6></li>
                 <li><h6>پارکینگ:  دارد</h6></li>
-                <li><h6>آسانسور:  دارد</h6></li>
+                <li><h6>آسانسور:  {% if not property.elevator %}نامشخض {% else %}دارد{% endif %}</h6></li>
               </ul>
               <ul class="ml-md-5 custom-list text-end" dir="rtl">
-                <li><h6>مساحت سطح طبقه:  {{property.area|persian_numbers}}</h6></li>
+                <li><h6>مساحت سطح طبقه:  {% if not property.floor_area %}نامشخص {% else %}{{property.floor_area|persian_numbers}}{% endif %}</h6></li>
                 <li><h6>سال ساخت:  {{property.built_year|persian_numbers}}</h6></li>
-                <li><h6>طبقات:  تکمیل شود</h6></li>
+                <li><h6>طبقات:  {% if not property.floors %}نامشخص {% else %}{{property.floors|persian_numbers}}{% endif %}</h6></li>
                 <li><h6>سقف: جدید</h6></li>
-                <li><h6>انباری: دارد</h6></li>
+                <li><h6>انباری: {% if property.warehouse %}دارد {% else %}ندارد{% endif %}</h6></li>
               </ul>
             </div>
             <!--<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>-->
@@ -98,30 +98,12 @@
           <div class="categories text-right">
             <h3 class="text-end">دسته‌بندی‌ها</h3>
             <ul class="list-unstyled">
+              {% for category in categories %}
               <li class="d-flex justify-content-between flex-row-reverse">
-                <a href="#" class="text-decoration-none">ملک</a> 
-                <span>{{'12'|persian_numbers}}</span>
+                <a href="#" class="text-decoration-none">{{category.title}}</a> 
+                <span>{{ category.property_count|persian_numbers}}</span>
               </li>
-              <li class="d-flex justify-content-between flex-row-reverse">
-                <a href="#" class="text-decoration-none">خانه</a>
-                <span>(22)</span>
-              </li>
-              <li class="d-flex justify-content-between flex-row-reverse">
-                <a href="#" class="text-decoration-none">خانه ویلایی</a>
-                <span>(37)</span>
-              </li>
-              <li class="d-flex justify-content-between flex-row-reverse">
-                <a href="#" class="text-decoration-none">ویلا</a>
-                <span>(42)</span>
-              </li>
-              <li class="d-flex justify-content-between flex-row-reverse">
-                <a href="#" class="text-decoration-none">آپارتمان</a>
-                <span>(14)</span>
-              </li>
-              <li class="d-flex justify-content-between flex-row-reverse">
-                <a href="#" class="text-decoration-none">مجتمع مسکونی</a>
-                <span>(140)</span>
-              </li>
+              {% endfor %}
             </ul>
           </div>
         </div>
@@ -144,27 +126,6 @@
   </div>
 </section> <!-- .section -->
 
-<section class="ftco-section-parallax">
-  <div class="parallax-img d-flex align-items-center">
-    <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-          <h2>Subcribe to our Newsletter</h2>
-          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
-          <div class="row d-flex justify-content-center mt-5">
-            <div class="col-md-8">
-              <form action="#" class="subscribe-form">
-                <div class="form-group d-flex">
-                  <input type="text" class="form-control" placeholder="Enter email address">
-                  <input type="submit" value="Subscribe" class="submit px-3">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 {% endblock main %}
