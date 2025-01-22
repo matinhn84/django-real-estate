@@ -26,12 +26,9 @@
     <link rel="stylesheet" href="{% static 'amlak/css/style.css' %}">
 
 	<!--my custom css-->
-    <link rel="stylesheet" href="{% static 'amlak/css/my-custom.css' %}">
+    {% include "partials/vazir_font.html" %}
 
-	<!--Vazir font-->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+	
 
   </head>
   <body>
@@ -66,8 +63,20 @@
 					<li class="nav-item"><a href="about.html" class="nav-link">درباره ما</a></li>
 					<li class="nav-item"><a href="blog.html" class="nav-link">وبلاگ</a></li>
 					<li class="nav-item"><a href="contact.html" class="nav-link">تماس با ما</a></li>
-					<li class="nav-item cta"><a href="contact.html" class="nav-link ml-lg-2"><span class="icon-user"></span> ورود</a></li>
-					<li class="nav-item cta cta-colored"><a href="contact.html" class="nav-link"><span class="icon-pencil"></span> ثبت‌نام</a></li>
+					{% if request.user.is_authenticated %}
+					<li class="nav-item dropdown">
+						<a href="" class="nav-link dropdwon-toggle text-light" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<span class="icon-user mr-1"></span>{{request.user.get_full_name}}
+						</a>
+						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item text-right" href="/my-account">حساب من</a></li>
+							<li><a class="dropdown-item text-right" href="/logout">خروج</a></li>
+						  </ul>
+					</li>
+					{% else %}
+					<li class="nav-item cta"><a href="{% url 'properties:login' %}" class="nav-link ml-lg-2"><span class="icon-user"></span> ورود</a></li>
+					<li class="nav-item cta cta-colored"><a href="{% url 'properties:register' %}" class="nav-link"><span class="icon-pencil"></span> ثبت‌نام</a></li>
+					{% endif %}
 				</ul>
 			</div>
 

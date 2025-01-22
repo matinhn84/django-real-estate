@@ -1,0 +1,37 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" href="{% static 'register/styles.css' %}">
+
+<!--VAZIR FONT-->
+{% include "partials/vazir_font.html" %}
+
+<div class="container">
+        <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        	<div class="panel panel-default">
+        		<div class="panel-heading" dir="rtl">
+			    		<h3 class="panel-title"> ورود </h3>
+			 			</div>
+			 			<div class="panel-body">
+			    		<form role="form" method="post">
+                            {% csrf_token %}
+							<div class="form-group" dir="rtl">
+								<input type="username" id="id_username" name="username" class="form-control input-sm" placeholder="نام کاربری">
+							</div>
+
+							<div class="form-group" dir="rtl">
+								<input type="password" id="id_password" name="password" class="form-control input-sm" placeholder="رمز عبور">
+							</div>
+			    			
+			    			<input type="submit" value="ورود" class="btn btn-info btn-block">
+			    		</form>
+			    	</div>
+	    		</div>
+    		</div>
+    	</div>
+    </div>

@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'properties',
     'core',
+    'crispy_forms',
+    "crispy_bootstrap4",
 ]
 
 MIDDLEWARE = [
@@ -142,3 +144,11 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# LOGIN REDIRECT
+LOGIN_REDIRECT_URL = "properties:index"
+LOGIN_URL = "properties:login"
+
+
+# CRISPY FORMS
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"

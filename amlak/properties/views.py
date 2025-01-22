@@ -5,8 +5,11 @@ from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.db.models import Count
 from django.views.generic import ListView, CreateView
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
-from .models import Property, Category, Contact
+from .models import Property, Category, Contact, Message
 # Create your views here.
 
 
@@ -94,3 +97,34 @@ class ContactCreate(CreateView):
     def form_valid(self, form):
         messages.success(self.request, "پیام ارسال شد")
         return super().form_valid(form)
+    
+# register user
+class UserCreate(CreateView):
+    model = User
+    fields = "__all__"
+    success_url = reverse_lazy('properties:index')
+
+
+# Dashboard views
+def dashboard_view(request):
+    unread_messages = request.user.messages.filter(is_read=False)
+    context = {
+        'unread_messages':unread_messages,
+    }
+    return render(request, 'cms/dashboard.html', context)
+
+
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+@receiver(post_save, sender=Property)
+def create_message_on_blog_approval(sender, instance, created, **kwargs):
+    if instance.is_approved and not created:  # فقط در هنگام تایید اجرا شود
+        Message.objects.create(user=instance.user, content="hello")
+
+
+def mark_messages_as_read(request):
+    request.user.messages.filter(is_read=False).update(is_read=True)
+    return render(request, 'cms/messages.html', {'messages': request.user.messages.all()})
+

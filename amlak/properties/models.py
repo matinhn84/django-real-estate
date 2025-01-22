@@ -34,6 +34,7 @@ class Property(models.Model):
     floor_area = models.IntegerField(null=True)
     elevator = models.BooleanField(null=True, default=False)
     warehouse = models.BooleanField(null=True, default=False)
+    is_approved = models.BooleanField(default=False)
 
 
     def save(self, *args, **kwargs):
@@ -68,3 +69,13 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.name} : {self.subject}"
+
+
+class Message(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='messages')
+    content = models.TextField()
+    is_read = models.BooleanField(default=False)  # وضعیت خواندن پیام
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message for {self.user.username} - Read: {self.is_read}"
