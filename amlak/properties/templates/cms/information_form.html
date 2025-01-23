@@ -1,0 +1,15 @@
+{% extends "cms/dashboard.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load persian_filters %}
+
+{% block title %}
+<h2 class="mr-3 mt-3">اطلاعات حساب من</h2>
+{% endblock title %}
+{% block main %}
+<form method="post" class="mt-4">
+    {% csrf_token %}
+    {% crispy form %}
+    <button class="btn btn-block btn-info" type="submit">تایید</button>
+</form>
+{% endblock main %}

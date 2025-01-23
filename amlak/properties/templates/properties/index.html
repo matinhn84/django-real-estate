@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="fa"> <!-- تنظیم زبان به فارسی -->
   <head>
-    <title>سایت املاک</title>
+    <title>رویال املاک</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -57,20 +57,23 @@
 			<!--MENU-->
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav me-auto d-flex flex-row-reverse">
-					<li class="nav-item active"><a href="index.html" class="nav-link">خانه</a></li>
-					<li class="nav-item"><a href="{% url 'properties:properties' %}" class="nav-link">املاک</a></li>
-					<li class="nav-item"><a href="agents.html" class="nav-link">نمایندگان</a></li>
-					<li class="nav-item"><a href="about.html" class="nav-link">درباره ما</a></li>
-					<li class="nav-item"><a href="blog.html" class="nav-link">وبلاگ</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link">تماس با ما</a></li>
+					<li class="nav-item  {% if request.path == '/' %}active{% endif %} "><a href="{% url 'properties:index' %}" class="nav-link">خانه</a></li>
+					<li class="nav-item  {% if request.path == '/properties/' %}active{% endif %} "><a href="{% url 'properties:properties' %}" class="nav-link">املاک</a></li>
+					<li class="nav-item  {% if request.path == '/about/' %}active{% endif %} "><a href="{% url 'properties:about' %}" class="nav-link">درباره ما</a></li>
+					<li class="nav-item  {% if request.path == '/contact/' %}active{% endif %} "><a href="{% url 'properties:contact' %}" class="nav-link">تماس با ما</a></li>
 					{% if request.user.is_authenticated %}
 					<li class="nav-item dropdown">
 						<a href="" class="nav-link dropdwon-toggle text-light" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<span class="icon-user mr-1"></span>{{request.user.get_full_name}}
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item text-right" href="/my-account">حساب من</a></li>
-							<li><a class="dropdown-item text-right" href="/logout">خروج</a></li>
+							<li><a class="dropdown-item text-right" href="{% url 'properties:account' %}">حساب من</a></li>
+							<li>
+								<form method="post" action="{% url 'properties:logout' %}" style="text-align: right;">
+									{% csrf_token %}
+									<input class="text-dark mr-4" type="submit" value="خروج" style="all: unset; cursor: pointer;">
+								</form>						
+							</li>
 						  </ul>
 					</li>
 					{% else %}
@@ -80,7 +83,7 @@
 				</ul>
 			</div>
 
-			<a class="navbar-brand ms-auto" href="index.html">رويال <span>املاک</span></a>
+			<a class="navbar-brand ms-auto" href="{% url 'properties:index' %}">رويال <span>املاک</span></a>
 	
 			<!-- دکمه موبایل -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="نمایش منو">
@@ -186,7 +189,7 @@
 			  {% for obj in properties %}
 			  <div class="item">
 				<div class="properties">
-					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ obj.thumbnail }}');">
+					<a href="properties/{{obj.pk}}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ obj.thumbnail }}');">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
@@ -198,14 +201,14 @@
                                 <span class="price">{{obj.price|persian_numbers}} <span class="text-black-50 fs-6 text-muted"><small>میلیارد</small></span></span>
                             </div>
                             <div class="one text-right">
-                                <h3><a href="property-single.html">{{obj.title|persian_numbers}}</a></h3>
+                                <h3><a href="properties/{{obj.pk}}">{{obj.title|persian_numbers}}</a></h3>
                                 <p>{{obj.type}}</p>
                             </div>
                         </div>
                         <p class="text-right">{{obj.description|persian_numbers}}</p>
                         <hr>
                         <p class="bottom-area d-flex">
-                            <span><i class="flaticon-selection"></i> {{obj.area|persian_numbers}}متر</span>
+                            <span><i class="flaticon-selection"></i> {{obj.lot_area|persian_numbers}}متر</span>
                             <span class="ml-auto"><i class="flaticon-bathtub"></i> {{obj.bathroom|persian_numbers}}</span>
                             <span><i class="flaticon-bed"></i> {{obj.bedroom|persian_numbers}}</span>
                         </p>

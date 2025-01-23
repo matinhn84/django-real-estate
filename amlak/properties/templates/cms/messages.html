@@ -1,5 +1,15 @@
-<ul>
+{% extends "cms/dashboard.html" %}
+{% load persian_filters %}
+
+{% block title %}
+<h3 class="mb-3 ">پیام ها</h3>
+{% endblock title %}
+
+{% block main %}
+
+<ul dir="rtl">
     {% for message in messages %}
     <li>{{message.content}}</li>
     {% endfor %}
 </ul>
+{% endblock main %}

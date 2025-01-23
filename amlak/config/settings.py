@@ -148,6 +148,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "properties:index"
 LOGIN_URL = "properties:login"
 
+# LOGOUT REDIRECT
+LOGOUT_REDIRECT_URL = '/'
+
 
 # CRISPY FORMS
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"

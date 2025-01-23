@@ -25,7 +25,7 @@
             {% for obj in properties %}
             <div class="col-md-4 ftco-animate">
                 <div class="properties">
-                    <a href="{{obj.slug}}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ obj.thumbnail }}');">
+                    <a href="{{obj.pk}}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ obj.thumbnail }}');">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
@@ -44,7 +44,7 @@
                         <p class="text-right">{{obj.description|persian_numbers}}</p>
                         <hr>
                         <p class="bottom-area d-flex">
-                            <span><i class="flaticon-selection"></i> {{obj.area|persian_numbers}}متر</span>
+                            <span><i class="flaticon-selection"></i> {{obj.lot_area|persian_numbers}}متر</span>
                             <span class="ml-auto"><i class="flaticon-bathtub"></i> {{obj.bathroom|persian_numbers}}</span>
                             <span><i class="flaticon-bed"></i> {{obj.bedroom|persian_numbers}}</span>
                         </p>

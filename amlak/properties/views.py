@@ -1,20 +1,23 @@
-from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.db.models import Count
-from django.views.generic import ListView, CreateView
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
+from django.utils import timezone
+
+from django.views.generic import ListView, CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Property, Category, Contact, Message
+from .mixins import LimitFieldsMixin
 # Create your views here.
 
 
 def index_view(request):
-    properties = Property.objects.prefetch_related('images').all().order_by('-post_date')[:6]
+    properties = Property.objects.prefetch_related('images').filter(is_approved=True).order_by('-post_date')[:6]
     context = {
         'properties': properties,
     }
@@ -34,7 +37,7 @@ def properties_view(request):
     min_area = request.GET.get('min_area', '')
     max_area = request.GET.get('max_area', '')
 
-    properties = Property.objects.prefetch_related('images').all().order_by('-post_date')
+    properties = Property.objects.prefetch_related('images').filter(is_approved=True).order_by('-post_date')
 
     if title:
         properties = properties.filter(title__icontains=title)
@@ -69,8 +72,8 @@ def properties_view(request):
     return render(request, 'properties/property_list.html', context)
 
 
-def property_single_view(request, slug):
-    property = get_object_or_404(Property, slug=slug)
+def property_single_view(request, pk):
+    property = get_object_or_404(Property, pk=pk)
     relateds = Property.objects.filter(type=property.type).exclude(id=property.id)[:2]
     categories = Category.objects.annotate(property_count=Count('property'))
     context = {
@@ -105,26 +108,108 @@ class UserCreate(CreateView):
     success_url = reverse_lazy('properties:index')
 
 
+
 # Dashboard views
-def dashboard_view(request):
-    unread_messages = request.user.messages.filter(is_read=False)
-    context = {
-        'unread_messages':unread_messages,
-    }
-    return render(request, 'cms/dashboard.html', context)
+
+# update user and notification sign
+class UpdateUser(LoginRequiredMixin,UpdateView):
+    model = User
+    template_name = 'cms/information_form.html'
+    fields = ['username', 'first_name', 'last_name', 'email']
+    success_url = reverse_lazy('properties:information')
+
+    def get_object(self, queryset=None):
+        # Fetch the User instance of the currently logged-in user
+        return get_object_or_404(User, pk=self.request.user.pk)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Add unread messages to the context
+        context['unread_messages'] = self.request.user.messages.filter(is_read=False)
+        return context
+
+# user posts
+class PostsView(LoginRequiredMixin,ListView):
+    model = Property
+    template_name = 'cms/posts.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        queryset = Property.objects.prefetch_related('images').all().order_by('-post_date')
+        if self.request.user.is_superuser:
+            return queryset
+        return queryset.filter(user=self.request.user)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_date = timezone.now()
+        
+        for post in context['posts']:
+            post.days_difference = (current_date - post.post_date).days
+        return context
 
 
+@receiver(pre_save, sender=Property)
+def save_previous_approval_status(sender, instance, **kwargs):
 
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+    if instance.pk: 
+        previous_instance = Property.objects.get(pk=instance.pk)
+        instance.previous_is_approved = previous_instance.is_approved
+    else:
+        instance.previous_is_approved = False  # مقدار پیش‌فرض برای موارد جدید
 
 @receiver(post_save, sender=Property)
-def create_message_on_blog_approval(sender, instance, created, **kwargs):
-    if instance.is_approved and not created:  # فقط در هنگام تایید اجرا شود
-        Message.objects.create(user=instance.user, content="hello")
+def create_message_on_post_approval(sender, instance, created, **kwargs):
+    # بررسی کنید که تایید شده باشد و مقدار قبلی تایید نشده باشد
+    if instance.is_approved and not instance.previous_is_approved and not created:
+        if not instance.user.is_superuser:
+            Message.objects.create(
+                user=instance.user,
+                content=f"آگهی شما با عنوان «{instance.title}» تایید شد!"
+            )
+    Message.objects.create(user=instance.user,
+                           content=f"شما آکهی «{instance.title}» را تایید کردید!"
+            )
 
 
 def mark_messages_as_read(request):
     request.user.messages.filter(is_read=False).update(is_read=True)
     return render(request, 'cms/messages.html', {'messages': request.user.messages.all()})
 
+class CreateProperty(LimitFieldsMixin, LoginRequiredMixin, CreateView):
+    model = Property
+    fields = ['title', 'location', 'built_year',\
+               'type', 'category', 'status', 'bedroom',\
+                  'bathroom', 'description', 'price',\
+                      'floors', 'parking', 'lot_area', 'floor_area',\
+                          'elevator', 'warehouse', 'user', 'is_approved']
+    
+
+    limited_fields = ['title', 'location', 'built_year',\
+               'type', 'category', 'status', 'bedroom',\
+                  'bathroom', 'description', 'price',\
+                      'floors', 'parking', 'lot_area', 'floor_area',\
+                          'elevator', 'warehouse']
+    template_name = 'cms/property_form.html'
+
+
+class UpdateProperty(LimitFieldsMixin, UpdateUser):
+    model = Property
+    success_url = reverse_lazy('properties:posts')
+    template_name = 'cms/property_form.html'
+
+    fields = ['title', 'location', 'built_year',\
+               'type', 'category', 'status', 'bedroom',\
+                  'bathroom', 'description', 'price',\
+                      'floors', 'parking', 'lot_area', 'floor_area',\
+                          'elevator', 'warehouse', 'user', 'is_approved']
+    
+
+    limited_fields = ['title', 'location', 'built_year',\
+               'type', 'category', 'status', 'bedroom',\
+                  'bathroom', 'description', 'price',\
+                      'floors', 'parking', 'lot_area', 'floor_area',\
+                          'elevator', 'warehouse']
+    
+    def get_object(self, queryset=None):
+        return get_object_or_404(Property, pk=self.kwargs['pk'], user=self.request.user)

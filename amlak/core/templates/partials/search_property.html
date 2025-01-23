@@ -69,12 +69,13 @@
                                 <div class="form-field">
                                     <div class="select-wrap">
                                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <select name="bedroom" id="" class="form-control text-end" value='{{request.GET.bedroom}}'>
+                                        <select name="min_bedroom" id="" class="form-control text-end" value='{{request.GET.bedroom}}'>
+                                            <option class="text-dark" value="">انتخاب کنید</option>
                                             <option class="text-dark" value="1">{{1|persian_numbers}}</option>
                                             <option class="text-dark" value="2">{{2|persian_numbers}}</option>
                                             <option class="text-dark" value="3">{{3|persian_numbers}}</option>
                                             <option class="text-dark" value="4">{{4|persian_numbers}}</option>
-                                            <option class="text-dark" value="5 value="1" ">{{5|persian_numbers}}</option>
+                                            <option class="text-dark" value="5">{{5|persian_numbers}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -86,7 +87,8 @@
                                 <div class="form-field">
                                     <div class="select-wrap">
                                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <select name="bathroom" id="" class="form-control text-end" value='{{request.GET.bathroom}}'>
+                                        <select name="min_bathroom" id="" class="form-control text-end" value='{{request.GET.bathroom}}'>
+                                            <option class="text-dark" value="">انتخاب کنید</option>
                                             <option class="text-dark" value="1" >{{1|persian_numbers}}</option>
                                             <option class="text-dark" value="2" >{{2|persian_numbers}}</option>
                                             <option class="text-dark" value="3" >{{3|persian_numbers}}</option>

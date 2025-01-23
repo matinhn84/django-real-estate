@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 class Category(models.Model):
@@ -12,35 +13,29 @@ class Category(models.Model):
 
 
 class Property(models.Model):
-    title = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
-    location = models.CharField(max_length=150)
-    built_year = models.IntegerField(null=True)
+    title = models.CharField(max_length=100, verbose_name=_("عنوان"))
+    location = models.CharField(max_length=150, verbose_name=_("آدرس"))
+    built_year = models.IntegerField(null=True, verbose_name=_("سال ساخت"))
     class TypeChoices(models.TextChoices):
         apartment = 'آپارتمان',
         house = 'خانه'
-    type = models.CharField(max_length=50, choices=TypeChoices, default=TypeChoices.apartment)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-    status = models.CharField(max_length=100)
-    bedroom = models.IntegerField()
-    bathroom = models.IntegerField()
-    description = models.TextField(null=True)
-    price = models.IntegerField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    post_date = models.DateTimeField(auto_now_add=True, auto_now=False, null=True) 
-    floors = models.IntegerField(null=True)
-    parking = models.BooleanField(null=True)
-    lot_area = models.IntegerField()
-    floor_area = models.IntegerField(null=True)
-    elevator = models.BooleanField(null=True, default=False)
-    warehouse = models.BooleanField(null=True, default=False)
-    is_approved = models.BooleanField(default=False)
+    type = models.CharField(max_length=50, choices=TypeChoices, default=TypeChoices.apartment, verbose_name=_("نوع"))
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, verbose_name=_("دسته بندی"))
+    status = models.CharField(max_length=100, verbose_name=_("وضعیت"))
+    bedroom = models.IntegerField(verbose_name=_("اتاق خواب"))
+    bathroom = models.IntegerField( verbose_name=_("دستشویی"))
+    description = models.TextField(null=True, verbose_name=_("توضیحات"))
+    price = models.IntegerField(verbose_name=_("قیمت"))
+    post_date = models.DateTimeField(null=True, verbose_name=_("تاریخ پست"))
+    floors = models.IntegerField(null=True, verbose_name=_("تعداد طبقات"))
+    parking = models.BooleanField(null=True, verbose_name=_("پارکینگ"))
+    lot_area = models.IntegerField(verbose_name=_("متراژ کل"))
+    floor_area = models.IntegerField(null=True, verbose_name=_("متراژ سازه"))
+    elevator = models.BooleanField(null=True, default=False, verbose_name=_("آسانسور"))
+    warehouse = models.BooleanField(null=True, default=False, verbose_name=_("انباری"))
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, verbose_name=_("کاربر"))
+    is_approved = models.BooleanField(default=False, verbose_name=_("وضعیت تایید"))
 
-
-    def save(self, *args, **kwargs):
-        if not self.slug:  # Generate slug only if it doesn't already exist
-            self.slug = slugify(self.title)
-        super().save(*args, **kwargs)
 
     def thumbnail(self):
         first_image = self.images.first()
@@ -79,3 +74,7 @@ class Message(models.Model):
 
     def __str__(self):
         return f"Message for {self.user.username} - Read: {self.is_read}"
+
+
+
+

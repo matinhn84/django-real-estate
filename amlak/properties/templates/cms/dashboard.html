@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>داشبورد</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -33,6 +33,7 @@
   <!-- Custom style for RTL -->
   <link rel="stylesheet" href="{% static 'dashboard/dist/css/custom.css' %}">
 
+
   <!--VAZIR FONT-->
   {% include "partials/vazir_font.html" %}
 </head>
@@ -42,14 +43,13 @@
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
-   بازگشت به صفحه اصلی
+   <a href="{% url 'properties:index' %}">صفحه اصلی</a>
   </nav>
   <!-- /.navbar -->
-
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{% url 'properties:index' %}" class="brand-link">
       <span class="brand-text font-weight-light ml-3">رویال املاک</span>
     </a>
 
@@ -61,7 +61,7 @@
         <img src="{% static 'dashboard/dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{request.user.get_full_name}}</a>
+          <span class="d-block text-light " >{{request.user.get_full_name}}</span>
         </div>
       </div>
 
@@ -71,33 +71,41 @@
       with font-awesome or any other icon font library -->
       <div class="nav nav-pills nav-sidebar flex-column">
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{% url 'properties:account' %}" class="nav-link {% if request.path ==  '/account/' %}active{% endif %}">
+            <i class="nav-icon fas fa-copy"></i>
+              <p>
+              اطلاعات حساب
+              </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'properties:posts' %}" class="nav-link">
             <i class="nav-icon fas fa-copy"></i>
               <p>
               آگهی های من
               </p>
           </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon far fa-plus-square"></i>
-              <p>
-                آکهی جدید
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
-                پیام ها
-                {% if unread_messages.count > 0 %}
-                <span class="right badge badge-danger">جدید</span>
-                {% endif %}
-              </p>
-            </a>
-          </li>
-        </div>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'properties:create' %}" class="nav-link">
+            <i class="nav-icon far fa-plus-square"></i>
+            <p>
+              آکهی جدید
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'properties:messages' %}" class="nav-link">
+            <i class="nav-icon far fa-envelope"></i>
+            <p>
+              پیام ها
+              {% if unread_messages.count > 0 %}
+              <span class="right badge badge-danger">جدید</span>
+              {% endif %}
+            </p>
+          </a>
+        </li>
+      </div>
         
       </div>
       <!-- /.sidebar-menu -->
@@ -107,9 +115,12 @@
 
   <!-- Content Wrapper. Contains page content -->
   <!-- /.content-wrapper -->
-  {% block main %}
-  
-  {% endblock main %}
+  <div class="content-wrapper">
+    <div class="content">
+    {% block title %}{% endblock title %}
+    {% block main %}{% endblock main %}
+    </div>
+  </div>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

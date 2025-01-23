@@ -1,0 +1,47 @@
+{% extends "cms/dashboard.html" %}
+
+{% load static %}
+{% load persian_filters %}
+
+{% block main %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>کارت‌های آگهی املاک</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-left mb-4">آگهی‌های من</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for obj in posts %}
+            <div class="col">
+                <div class="card h-100">
+                <img src="{{obj.thumbnail}}" class="card-img-top" alt="عکس ملک" style="height:200px;">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h4 class="card-title">{{obj.title|persian_numbers}}</h4>
+                        <p class="card-text">{% if obj.is_approved %}{{obj.days_difference|persian_numbers}} روز قبل {% else %} <p class="text-warning">در حال بررسی</p> {% endif %}</p>
+                    </div>
+                <div class="d-flex align-items-center justify-content-between mt-3">
+                    <a href="{{obj.pk}}/update" class="btn btn-primary">ویرایش</a>
+                    <p class="card-text">{{obj.price|persian_numbers    }} تومان </p>
+                </div>
+                {% if request.user.is_superuser %}
+                    <p class="text-right">کاربر:{{obj.user}}</p>
+                {% endif %}    
+            </div>
+        </div>
+    </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+{% endblock main %}
+
