@@ -2,3 +2,10 @@
     font-family: "Vazirmatn", serif;
 }
 
+
+
+@media (max-width: 768px) {
+    #img-land{
+        display:none!important;
+    }
+}

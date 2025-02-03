@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-qwf$rv^wn7i#qt^1#k==a1d(uu(!)ej18a6zi%7w(vwlc3$i_6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['amlak.pythonanywhere.com']
 
 
 # Application definition
@@ -39,9 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'properties',
-    'core',
     'crispy_forms',
-    "crispy_bootstrap4",
+    'crispy_bootstrap4',
+    'core',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -80,8 +81,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'amlak$amlak',
+        'USER' : "amlak",
+        'PASSWORD': 'mohamad0640914497',
+        'HOST': 'amlak.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
     }
 }
 
@@ -130,7 +135,7 @@ STATIC_ROOT = os.path.join(BASE_DIR ,"static")
 import os
 
 
-MEDIA_URL = '/media/'  
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 

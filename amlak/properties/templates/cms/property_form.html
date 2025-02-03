@@ -6,9 +6,12 @@
 {% block title %} <h3 class="mb-3 mt-3">آگهی جدید</h3> {% endblock title %}
 
 {% block main %}
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{form|crispy}}
+    {{property_form|crispy}}
+    <label for="images">Upload Images:</label>
+    <input type="file" name="images" multiple>
+
     <button class="btn btn-block btn-primary mb-4 mt-4" type="submit">تایید</button>
 </form>
 {% endblock main %}

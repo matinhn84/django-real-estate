@@ -1,0 +1,27 @@
+from django import forms
+from .models import Property, Image
+
+
+class PropertyForm(forms.ModelForm):
+    class Meta:
+        model = Property
+        fields = [
+            'title', 'location', 'built_year', 'type', 'category', 
+            'status', 'bedroom', 'bathroom', 'description', 'price', 
+            'floors', 'parking', 'lot_area', 'floor_area', 'elevator', 
+            'warehouse', 'user', 'is_approved'
+        ]
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super(PropertyForm, self).__init__(*args, **kwargs)
+
+        if user and not user.is_superuser:
+            self.fields.pop('user')
+            self.fields.pop('is_approved')
+
+
+class PropertyImageForm(forms.ModelForm):
+    class Meta:
+        model = Image
+        fields = ['image']

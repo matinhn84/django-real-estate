@@ -10,7 +10,7 @@
                         <div class="col-md">
                             <div class="form-group text-end">
                                 <label class="form-label" style="text-align: right; display: block;" for="#">کلیدواژه</label>
-                                <div class="form-field">
+                                <div class="input-group">
                                     <div class="icon"><span class="icon-pencil"></span></div>
                                     <input type="text" name="title" class="form-control text-end" placeholder="کلیدواژه" value='{{request.GET.title}}'>
                                 </div>
@@ -19,7 +19,7 @@
                         <div class="col-md align-items-end">
                             <div class="form-group text-end">
                                 <label class="form-label" style="text-align: right; display: block;" for="#">موقعیت</label>
-                                <div class="form-field">
+                                <div class="input-group">
                                     <div class="icon"><span class="icon-pencil"></span></div>
                                     <input type="text" name="location" class="form-control text-end" placeholder="نام شهر/محله" value='{{request.GET.location}}'>
                                 </div>
@@ -27,104 +27,87 @@
                         </div>
                         <div class="col-md align-items-end">
                             <div class="form-group text-end">
-                                <label class="form-label" style="text-align: right; display: block;" for="#">نوع ملک</label>
-                                <div class="form-field">
-                                    <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                            <div class="text-dark">
-                                                <select name="type" class="form-control text-end" value='{{request.GET.type}}'>
-                                                    <option class="text-dark" value="">نوع</option>
-                                                    <option class="text-dark">تجاری</option>
-                                                    <option class="text-dark">دفتر</option>
-                                                    <option class="text-dark">مسکونی</option>
-                                                    <option class="text-dark">ویلا</option>
-                                                    <option class="text-dark" >آپارتمان</option>
-                                                </select>
-                                        </div>
-                                    </div>
+                                <label class="form-label text-right" style="text-align: right; display: block;">نوع ملک</label>
+                                <div class="input-group">
+                                    <select name="type" class="form-control text-end">
+                                        <option class="text-dark" value="">نوع</option>
+                                        <option class="text-dark" {% if request.GET.type == "تجاری" %}selected{% endif %}>تجاری</option>
+                                        <option class="text-dark" {% if request.GET.type == "دفتر" %}selected{% endif %}>دفتر</option>
+                                        <option class="text-dark" {% if request.GET.type == "مسکونی" %}selected{% endif %}>مسکونی</option>
+                                        <option class="text-dark" {% if request.GET.type == "ویلا" %}selected{% endif %}>ویلا</option>
+                                        <option class="text-dark" {% if request.GET.type == "آپارتمان" %}selected{% endif %}>آپارتمان</option>
+                                    </select>
                                 </div>
+
                             </div>
                         </div>
                         <div class="col-md align-items-end">
                             <div class="form-group text-end">
-                                <label class="form-label" style="text-align: right; display: block;" for="#">وضعیت ملک</label>
-                                <div class="form-field">
-                                    <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                <label class="form-label text-right" style="text-align: right;display: block;">وضعیت ملک</label>
+                                <div class="input-grop">
                                         <select name="status" id="" class="form-control text-end" value='{{request.GET.status}}'>
                                             <option class="text-dark" value="">نوع</option>
-                                            <option class="text-dark">اجاره</option>
-                                            <option class="text-dark">فروش</option>
+                                            <option class="text-dark" {% if request.GET.status == "اجاره" %}selected{% endif %}>اجاره</option>
+                                            <option class="text-dark" {% if request.GET.status == "فروش" %}selected{% endif %}>فروش</option>
                                         </select>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row" dir="rtl">
                         <div class="col-md align-items-center">
                             <div class="form-group text-end">
                                 <label style="text-align: right; display: block;" for="#">حداقل اتاق‌خواب</label>
-                                <div class="form-field">
-                                    <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <select name="min_bedroom" id="" class="form-control text-end" value='{{request.GET.bedroom}}'>
+                                <div class="input-group">
+                                        <select name="min_bedroom" class="form-control text-end">
                                             <option class="text-dark" value="">انتخاب کنید</option>
-                                            <option class="text-dark" value="1">{{1|persian_numbers}}</option>
-                                            <option class="text-dark" value="2">{{2|persian_numbers}}</option>
-                                            <option class="text-dark" value="3">{{3|persian_numbers}}</option>
-                                            <option class="text-dark" value="4">{{4|persian_numbers}}</option>
-                                            <option class="text-dark" value="5">{{5|persian_numbers}}</option>
+                                            <option class="text-dark" value="1" {% if request.GET.min_bedroom == "1" %}selected{% endif %}>{{1|persian_numbers}}</option>
+                                            <option class="text-dark" value="2" {% if request.GET.min_bedroom == "2" %}selected{% endif %}>{{2|persian_numbers}}</option>
+                                            <option class="text-dark" value="3" {% if request.GET.min_bedroom == "3" %}selected{% endif %}>{{3|persian_numbers}}</option>
+                                            <option class="text-dark" value="4" {% if request.GET.min_bedroom == "4" %}selected{% endif %}>{{4|persian_numbers}}</option>
+                                            <option class="text-dark" value="5" {% if request.GET.min_bedroom == "5" %}selected{% endif %}>{{5|persian_numbers}}</option>
                                         </select>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md align-items-end">
                             <div class="form-group text-end">
                                 <label style="text-align: right; display: block;" for="#">حداقل تعداد حمام</label>
-                                <div class="form-field">
-                                    <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                <div class="input-group">
                                         <select name="min_bathroom" id="" class="form-control text-end" value='{{request.GET.bathroom}}'>
                                             <option class="text-dark" value="">انتخاب کنید</option>
-                                            <option class="text-dark" value="1" >{{1|persian_numbers}}</option>
-                                            <option class="text-dark" value="2" >{{2|persian_numbers}}</option>
-                                            <option class="text-dark" value="3" >{{3|persian_numbers}}</option>
-                                            <option class="text-dark" value="4" >{{4|persian_numbers}}</option>
-                                            <option class="text-dark" value="5" >{{5|persian_numbers}}</option>
+                                            <option class="text-dark" value="1" {% if request.GET.min_bathroom == "1" %}selected{% endif %}>{{1|persian_numbers}}</option>
+                                            <option class="text-dark" value="2" {% if request.GET.min_bathroom == "2" %}selected{% endif %}>{{2|persian_numbers}}</option>
+                                            <option class="text-dark" value="3" {% if request.GET.min_bathroom == "3" %}selected{% endif %}>{{3|persian_numbers}}</option>
+                                            <option class="text-dark" value="4" {% if request.GET.min_bathroom == "4" %}selected{% endif %}>{{4|persian_numbers}}</option>
+                                            <option class="text-dark" value="5" {% if request.GET.min_bathroom == "5" %}selected{% endif %}>{{5|persian_numbers}}</option>
                                         </select>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md align-items-end">
                             <div class="form-group text-end">
                                 <label style="text-align: right; display: block;" for="#">حداقل قیمت</label>
-                                <div class="form-field">
-                                    <div class="select-wrap">
-                                        <div class="icon"><span class="icon-pencil"></span></div>
-                                        <input type="text" class="form-control text-end" name="min_price" placeholder="حداقل قیمت" value="{{request.GET.min_price}}">
-                                    </div>
+                                <div class="input-group">
+                                    <div class="icon"><span class="icon-pencil"></span></div>
+                                    <input type="text" class="form-control text-end" name="min_price" placeholder="حداقل قیمت" value="{{request.GET.min_price}}">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md align-items-end">
                             <div class="form-group text-end">
                                 <label style="text-align: right; display: block;" for="max-price">حداکثر قیمت</label>
-                                <div class="form-field">
-                                    <div class="form-field">
+                                <div class="input-group">
                                         <div class="icon"><span class="icon-pencil"></span></div>
                                         <input class="form-control text-end" type="text" name="max_price" placeholder="حداکثر قیمت" value="{{request.GET.max_price}}">
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md align-items-end">
                             <div class="form-group text-end">
                                 <label style="text-align: right; display: block;" for="#">حداقل مساحت </label>
-                                <div class="form-field">
+                                <div class="input-group">
                                     <div class="icon"><span class="icon-pencil"></span></div>
                                     <input type="text" name="min_area" class="form-control text-end" placeholder="حداقل مساحت" value='{{request.GET.min_area}}'>
                                 </div>
@@ -133,7 +116,7 @@
                         <div class="col-md align-items-end">
                             <div class="form-group text-end">
                                 <label style="text-align: right; display: block;" for="#">حداکثر مساحت</label>
-                                <div class="form-field">
+                                <div class="input-group">
                                     <div class="icon"><span class="icon-pencil"></span></div>
                                     <input type="text" name="max_area" class="form-control text-end" placeholder="حداکثر مساحت" value='{{request.GET.max_area}}'>
                                 </div>
@@ -141,14 +124,100 @@
                         </div>
                         <div class="col-md align-self-end">
                             <div class="form-group text-end">
-                                <div class="form-field">
+                                <div class="input-group">
                                     <input type="submit" value="جستجو" class="form-control btn btn-primary text-end">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-    
+                    {% if request.path == '/properties/' %}
+                    <div class="row" dir="rtl">
+                        <div class="container mt-4" dir="rtl">
+                            <h5 class="text-right">فیلترهای فعال:</h5>
+                            <div class="d-flex flex-wrap gap-2"style="gap:3px!important;">
+                                {% if request.GET.title %}
+                                    <span class="badge bg-dark p-2 text-truncate">
+                                        عنوان: {{ request.GET.title }}
+                                        <a href="{% url 'properties:properties' %}?{% for key, value in request.GET.items %}{% if key != 'title' %}{{ key }}={{ value }}&{% endif %}{% endfor %}" class="text-white text-decoration-none ms-2">
+                                            ✕
+                                        </a>
+                                    </span>
+                                {% endif %}
+
+                                {% if request.GET.location %}
+                                    <span class="badge bg-dark p-2 text-truncate">
+                                        موقعیت: {{ request.GET.location|persian_numbers }}
+                                        <a href="{% url 'properties:properties' %}?{% for key, value in request.GET.items %}{% if key != 'location' %}{{ key }}={{ value }}&{% endif %}{% endfor %}" class="text-white text-decoration-none ms-2">
+                                            ✕
+                                        </a>
+                                    </span>
+                                {% endif %}
+
+                                {% if request.GET.type %}
+                                    <span class="badge bg-dark p-2 text-truncate">
+                                        نوع: {{ request.GET.type |persian_numbers}}
+                                        <a href="{% url 'properties:properties' %}?{% for key, value in request.GET.items %}{% if key != 'type' %}{{ key }}={{ value }}&{% endif %}{% endfor %}" class="text-white text-decoration-none ms-2">
+                                            ✕
+                                        </a>
+                                    </span>
+                                {% endif %}
+
+                                {% if request.GET.status %}
+                                    <span class="badge bg-dark p-2 text-truncate">
+                                        وضعیت: {{ request.GET.status |persian_numbers}}
+                                        <a href="{% url 'properties:properties' %}?{% for key, value in request.GET.items %}{% if key != 'status' %}{{ key }}={{ value }}&{% endif %}{% endfor %}" class="text-white text-decoration-none ms-2">
+                                            ✕
+                                        </a>
+                                    </span>
+                                {% endif %}
+
+                                {% if request.GET.min_bedroom %}
+                                    <span class="badge bg-dark p-2 text-truncate">
+                                        حداقل اتاق خواب: {{ request.GET.min_bedroom|persian_numbers }}
+                                        <a href="{% url 'properties:properties' %}?{% for key, value in request.GET.items %}{% if key != 'min_bedroom' %}{{ key }}={{ value }}&{% endif %}{% endfor %}" class="text-white text-decoration-none ms-2">
+                                            ✕
+                                        </a>
+                                    </span>
+                                {% endif %}
+
+                                {% if request.GET.min_bathroom %}
+                                    <span class="badge bg-dark p-2 text-truncate">
+                                        حداقل سرویس بهداشتی: {{ request.GET.min_bathroom|persian_numbers }}
+                                        <a href="{% url 'properties:properties' %}?{% for key, value in request.GET.items %}{% if key != 'min_bathroom' %}{{ key }}={{ value }}&{% endif %}{% endfor %}" class="text-white text-decoration-none ms-2">
+                                            ✕
+                                        </a>
+                                    </span>
+                                {% endif %}
+
+                                {% if request.GET.min_price or request.GET.max_price %}
+                                    <span class="badge bg-dark p-2 text-truncate">
+                                        قیمت: {{ request.GET.min_price|default:"۰"|persian_numbers }} - {{ request.GET.max_price|default:"∞"|persian_numbers }}
+                                        <a href="{% url 'properties:properties' %}?{% for key, value in request.GET.items %}{% if key not in 'min_price max_price' %}{{ key }}={{ value }}&{% endif %}{% endfor %}" class="text-white text-decoration-none ms-2">
+                                            ✕
+                                        </a>
+                                    </span>
+                                {% endif %}
+
+                                {% if request.GET.min_area or request.GET.max_area %}
+                                    <span class="badge bg-dark p-2 text-truncate">
+                                        متراژ: {{ request.GET.min_area|default:"۰"|persian_numbers }} - {{ request.GET.max_area|default:"∞" }}
+                                        <a href="{% url 'properties:properties' %}?{% for key, value in request.GET.items %}{% if key not in 'min_area max_area' %}{{ key }}={{ value }}&{% endif %}{% endfor %}" class="text-white text-decoration-none ms-2">
+                                            ✕
+                                        </a>
+                                    </span>
+                                {% endif %}
+
+                                {% if request.GET %}
+                                    <div class="w-100"></div>
+                                    <a href="{% url 'properties:properties' %}" class="btn btn-dark mt-2">پاک کردن همه فیلترها</a>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endif %}
+
+
             </form>
                 </div>
         </div>

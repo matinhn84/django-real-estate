@@ -1,6 +1,8 @@
 {% extends "properties/index.html" %}
 {% load static %}
 
+
+{% load custom_filters %}
 {% load persian_filters %}
 
 {% block main %}
@@ -17,14 +19,18 @@
   </div>
 
   {% include "partials/search_property.html" %}
-  
+
 
   <section class="ftco-section bg-light">
       <div class="container">
           <div class="row">
             {% for obj in properties %}
             <div class="col-md-4 ftco-animate">
-                <div class="properties">
+                {% if request.user.is_staff and obj.is_special %}
+                <div class="properties border-primary border-3" style="border: 2px solid #26baee!important;">
+                {% else %}
+                <div class="properties border-primary border-3">
+                {% endif %}
                     <a href="{{obj.pk}}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('{{ obj.thumbnail }}');">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
@@ -32,16 +38,16 @@
                     </a>
                     <div class="text p-3">
                         <span class="status sale">{{obj.status}}</span>
-                        <div class="d-flex">
-                            <div class="two text-left">
-                                <span class="price">{{obj.price|persian_numbers}} <span class="text-black-50 fs-6 text-muted"><small>میلیارد</small></span></span>
+                        <div class="d-flex justify-content-between">
+                            <div class="text-danger text-left">
+                                <span class="price" style="font-size:16px;">{{obj.price|persian_price}}</span>
                             </div>
                             <div class="one text-right">
-                                <h3><a href="property-single.html">{{obj.title|persian_numbers}}</a></h3>
+                                <h3><a href="{{obj.pk}}">{{obj.title|persian_numbers}}</a></h3>
                                 <p>{{obj.type}}</p>
                             </div>
                         </div>
-                        <p class="text-right">{{obj.description|persian_numbers}}</p>
+                        <p class="text-right" dir="rtl">{{obj.description|persian_numbers|truncatewords:6}}</p>
                         <hr>
                         <p class="bottom-area d-flex">
                             <span><i class="flaticon-selection"></i> {{obj.lot_area|persian_numbers}}متر</span>

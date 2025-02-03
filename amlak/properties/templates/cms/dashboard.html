@@ -19,7 +19,7 @@
   <!-- JQVMap -->
   <link rel="stylesheet" href="{% static 'dashboard/plugins/jqvmap/jqvmap.min.css' %}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{% static 'dashboard/dist/css/adminlte.min.css' %}">
+  <link rel="stylesheet" href="{% static 'dashboard/dist/adminlte.min.css' %}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{% static 'dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
   <!-- Daterange picker -->
@@ -31,7 +31,7 @@
   <!-- Bootstrap 4 RTL -->
   <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
   <!-- Custom style for RTL -->
-  <link rel="stylesheet" href="{% static 'dashboard/dist/css/custom.css' %}">
+  <link rel="stylesheet" href="{% static 'dashboard/dist/custom.css' %}">
 
 
   <!--VAZIR FONT-->
@@ -50,7 +50,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{% url 'properties:index' %}" class="brand-link">
-      <span class="brand-text font-weight-light ml-3">رویال املاک</span>
+      <span class="brand-text font-weight-light ml-3">املاک خاوران</span>
     </a>
 
     <!-- Sidebar -->
@@ -66,7 +66,7 @@
       </div>
 
       <!-- Sidebar Menu -->
-        
+
       <!-- Add icons to the links using the .nav-icon class
       with font-awesome or any other icon font library -->
       <div class="nav nav-pills nav-sidebar flex-column">
@@ -82,7 +82,11 @@
           <a href="{% url 'properties:posts' %}" class="nav-link">
             <i class="nav-icon fas fa-copy"></i>
               <p>
+            {% if request.user.is_superuser %}
+              آگهی ها
+            {% else %}
               آگهی های من
+            {% endif %}
               </p>
           </a>
         </li>
@@ -106,7 +110,7 @@
           </a>
         </li>
       </div>
-        
+
       </div>
       <!-- /.sidebar-menu -->
     </div>

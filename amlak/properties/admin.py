@@ -14,4 +14,5 @@ admin.site.register(Property, PropertyAdmin)
 admin.site.register(Category)
 admin.site.register(Contact)
 admin.site.register(Message)
+admin.site.register(Image)
 

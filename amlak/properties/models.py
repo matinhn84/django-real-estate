@@ -25,7 +25,7 @@ class Property(models.Model):
     bedroom = models.IntegerField(verbose_name=_("اتاق خواب"))
     bathroom = models.IntegerField( verbose_name=_("دستشویی"))
     description = models.TextField(null=True, verbose_name=_("توضیحات"))
-    price = models.IntegerField(verbose_name=_("قیمت"))
+    price = models.BigIntegerField(verbose_name=_("قیمت"))
     post_date = models.DateTimeField(null=True, verbose_name=_("تاریخ پست"))
     floors = models.IntegerField(null=True, verbose_name=_("تعداد طبقات"))
     parking = models.BooleanField(null=True, verbose_name=_("پارکینگ"))
@@ -35,6 +35,10 @@ class Property(models.Model):
     warehouse = models.BooleanField(null=True, default=False, verbose_name=_("انباری"))
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, verbose_name=_("کاربر"))
     is_approved = models.BooleanField(default=False, verbose_name=_("وضعیت تایید"))
+    is_special = models.BooleanField(default=False, verbose_name=_("برای کاربران ویژه"))
+
+
+
 
 
     def thumbnail(self):
@@ -52,10 +56,10 @@ class Image(models.Model):
 
     def __str__(self):
         return f"image for {self.property.title}"
-    
 
 
-# CONTACT MODEL 
+
+# CONTACT MODEL
 class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=254)

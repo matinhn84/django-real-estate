@@ -3,6 +3,8 @@
 
 
 # my custom ignore
+django-real-estate
+
 
 # Force Unix-style line endings
 * text eol=lf
