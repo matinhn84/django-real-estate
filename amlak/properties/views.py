@@ -222,7 +222,12 @@ def property_update(request, pk):
     if request.method == 'POST':
         property_form = PropertyForm(request.POST, instance=property_instance)
         if property_form.is_valid():
-            property_instance = property_form.save()
+            if not request.user.is_superuser:
+                property_instance = property_form.save(commit=False)
+                property_instance.is_approved = False  # Set approval to False
+                property_instance.save()
+            else:
+                property_instance = property_form.save()
             for file in request.FILES.getlist('image'):
                 Image.objects.create(property=property_instance, image=file)
             return redirect('/account/posts', pk=property_instance.pk)

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils.text import slugify
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
@@ -26,7 +26,7 @@ class Property(models.Model):
     bathroom = models.IntegerField( verbose_name=_("دستشویی"))
     description = models.TextField(null=True, verbose_name=_("توضیحات"))
     price = models.BigIntegerField(verbose_name=_("قیمت"))
-    post_date = models.DateTimeField(null=True, verbose_name=_("تاریخ پست"))
+    post_date = models.DateTimeField(null=True, blank=True, verbose_name=_("تاریخ پست"))
     floors = models.IntegerField(null=True, verbose_name=_("تعداد طبقات"))
     parking = models.BooleanField(null=True, verbose_name=_("پارکینگ"))
     lot_area = models.IntegerField(verbose_name=_("متراژ کل"))
@@ -36,6 +36,12 @@ class Property(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, verbose_name=_("کاربر"))
     is_approved = models.BooleanField(default=False, verbose_name=_("وضعیت تایید"))
     is_special = models.BooleanField(default=False, verbose_name=_("برای کاربران ویژه"))
+
+    def save(self, *args, **kwargs):
+        if self.is_approved and self.post_date is None:
+            self.post_date = timezone.now()
+
+        super().save(*args, **kwargs)
 
 
 

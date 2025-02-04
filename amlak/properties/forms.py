@@ -6,10 +6,10 @@ class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
         fields = [
-            'title', 'location', 'built_year', 'type', 'category', 
-            'status', 'bedroom', 'bathroom', 'description', 'price', 
-            'floors', 'parking', 'lot_area', 'floor_area', 'elevator', 
-            'warehouse', 'user', 'is_approved'
+            'title', 'location', 'built_year', 'type', 'category',
+            'status', 'bedroom', 'bathroom', 'description', 'price',
+            'floors', 'parking', 'lot_area', 'floor_area', 'elevator',
+            'warehouse', 'user', 'is_approved', 'is_special'
         ]
 
     def __init__(self, *args, **kwargs):
@@ -19,6 +19,7 @@ class PropertyForm(forms.ModelForm):
         if user and not user.is_superuser:
             self.fields.pop('user')
             self.fields.pop('is_approved')
+            self.fields.pop('is_special')
 
 
 class PropertyImageForm(forms.ModelForm):
