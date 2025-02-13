@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
-from django.http import Http404
+
 from django.db.models import Count, Q
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, pre_save
@@ -17,6 +17,13 @@ from .forms import PropertyForm
 # Create your views here.
 
 
+# global site title
+sitename = "املاک امیر شاهان"
+
+# put global phone number here
+admin_tel= "09123336677"
+
+
 def index_view(request):
     properties = Property.objects.prefetch_related('images').filter(is_approved=True).order_by('-post_date')[:6]
     special_properties = Property.objects.none()
@@ -27,6 +34,8 @@ def index_view(request):
         'properties': properties,
         'special_properties' : special_properties,
         'last_tree_properties':last_tree_properties,
+        'sitename': sitename,
+        'admin_tel' : admin_tel,
     }
     return render(request, 'properties/index.html', context)
 
@@ -34,8 +43,8 @@ def properties_view(request):
     # Get filter parameters
     title = request.GET.get('title', '')
     location = request.GET.get('location', '')
-    type = request.GET.get('type', '')
-    category_name = request.GET.get('category_name', '')
+    property_type = request.GET.get('property_type', '')
+    category = request.GET.get('category', '')
     status = request.GET.get('status', '')
     min_bedroom = int(request.GET.get('min_bedroom', 0)) if request.GET.get('min_bedroom') else 0
     min_bathroom = int(request.GET.get('min_bathroom', 0)) if request.GET.get('min_bathroom') else 0
@@ -55,10 +64,10 @@ def properties_view(request):
         properties = properties.filter(title__icontains=title)
     if location:
         properties = properties.filter(location__icontains=location)
-    if type:
-        properties = properties.filter(type__exact=type)  # Use `exact` for non-text fields
-    if category_name:
-        properties = properties.filter(category_name__icontains=category_name)
+    if property_type:
+        properties = properties.filter(property_type__exact=type)  # Use `exact` for non-text fields
+    if category:
+        properties = properties.filter(category__title__icontains=category)
     if status:
         properties = properties.filter(status__icontains=status)
     if min_bedroom:
@@ -79,6 +88,8 @@ def properties_view(request):
 
     context = {
         'properties': properties,
+        'sitename': sitename,
+        'admin_tel' : admin_tel,
     }
     return render(request, 'properties/property_list.html', context)
 
@@ -86,7 +97,7 @@ def properties_view(request):
 
 def property_single_view(request, pk):
     property = get_object_or_404(Property.objects.filter(is_approved=True), pk=pk)
-    relateds = Property.objects.filter(type=property.type).exclude(id=property.id)[:2]
+    relateds = Property.objects.filter(property_type=property.property_type).exclude(id=property.id)[:2]
     categories = Category.objects.annotate(
         property_count=Count('property', filter=Q(property__is_approved=True))
     ).filter(property_count__gt=0)
@@ -94,6 +105,8 @@ def property_single_view(request, pk):
          'property': property,
          'relateds':relateds,
          'categories': categories,
+         'admin_tel' : admin_tel,
+         'sitename': sitename,
     }
     return render(request, 'properties/property_single.html', context)
 
@@ -129,7 +142,8 @@ class UserCreate(CreateView):
 
 
 # Dashboard views
-
+def dashboard_view(request):
+    return(request, "cms/dashboard.html", {'sitename' : sitename})
 # update user and notification sign
 class UpdateUser(LoginRequiredMixin,UpdateView):
     model = User
@@ -237,4 +251,6 @@ def property_update(request, pk):
     return render(request, 'cms/property_form.html', {
         'property_form': property_form,
         'property': property_instance,
+        'admin_tel' : admin_tel,
+        'sitename': sitename,
     })

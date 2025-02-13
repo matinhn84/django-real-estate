@@ -2,7 +2,19 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+
+
+# multiple select field
+
+
+
 # Create your models here.
+
+
+
+
+
+
 
 class Category(models.Model):
     title = models.CharField(max_length=50)
@@ -11,6 +23,12 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+class Equipment(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    icon = models.FileField(upload_to="icons/", blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 
 class Property(models.Model):
     title = models.CharField(max_length=100, verbose_name=_("عنوان"))
@@ -19,7 +37,7 @@ class Property(models.Model):
     class TypeChoices(models.TextChoices):
         apartment = 'آپارتمان',
         house = 'خانه'
-    type = models.CharField(max_length=50, choices=TypeChoices, default=TypeChoices.apartment, verbose_name=_("نوع"))
+    property_type = models.CharField(max_length=50, choices=TypeChoices, default=TypeChoices.apartment, verbose_name=_("نوع"))
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, verbose_name=_("دسته بندی"))
     status = models.CharField(max_length=100, verbose_name=_("وضعیت"))
     bedroom = models.IntegerField(verbose_name=_("اتاق خواب"))
@@ -36,6 +54,8 @@ class Property(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, verbose_name=_("کاربر"))
     is_approved = models.BooleanField(default=False, verbose_name=_("وضعیت تایید"))
     is_special = models.BooleanField(default=False, verbose_name=_("برای کاربران ویژه"))
+    equipment = models.ManyToManyField(Equipment, blank=True, null=True)
+
 
     def save(self, *args, **kwargs):
         if self.is_approved and self.post_date is None:

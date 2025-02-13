@@ -6,10 +6,10 @@ class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
         fields = [
-            'title', 'location', 'built_year', 'type', 'category',
+            'title', 'location', 'built_year', 'category',
             'status', 'bedroom', 'bathroom', 'description', 'price',
             'floors', 'parking', 'lot_area', 'floor_area', 'elevator',
-            'warehouse', 'user', 'is_approved', 'is_special'
+            'warehouse', 'equipment', 'user', 'is_approved', 'is_special'
         ]
 
     def __init__(self, *args, **kwargs):

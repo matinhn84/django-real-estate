@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="fa"> <!-- تنظیم زبان به فارسی -->
   <head>
-    <title>رویال املاک</title>
+    <title>{{site_title}}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -46,7 +46,7 @@
     				</p>
     			</div>
     			<div class="col d-flex justify-content-end">
-    				<a href="tel:091200000000"><p class="num"> {{ 09123456789|persian_numbers }}<span class="icon-phone ml-2" ></span></p></a>
+    				<a href="tel:{{admin_tel}}"><p class="num"> {{ admin_tel|persian_numbers }}<span class="icon-phone ml-2" ></span></p></a>
     			</div>
     		</div>
     	</div>
@@ -57,7 +57,7 @@
 		<div class="container">
 
 			<!--MENU-->
-			<div class="collapse navbar-collapse" id="ftco-nav">
+			<div class="collapse navbar-collapse">
 				<ul class="navbar-nav me-auto d-flex flex-row-reverse">
 					<li class="nav-item  {% if request.path == '/' %}active{% endif %} "><a href="{% url 'properties:index' %}" class="nav-link">خانه</a></li>
 					<li class="nav-item  {% if request.path == '/properties/' %}active{% endif %} "><a href="{% url 'properties:properties' %}" class="nav-link">املاک</a></li>
@@ -76,7 +76,7 @@
 									<input class="text-dark mr-4" type="submit" value="خروج" style="all: unset; cursor: pointer;">
 								</form>
 							</li>
-						  </ul>
+						</ul>
 					</li>
 					{% else %}
 					<li class="nav-item cta"><a href="{% url 'properties:login' %}" class="nav-link ml-lg-2"><span class="icon-user"></span> ورود</a></li>
@@ -85,20 +85,37 @@
 				</ul>
 			</div>
 
-			<a class="navbar-brand ms-auto" href="{% url 'properties:index' %}">املاک <span>خاوران </span></a>
+            <a class="desktop-only navbar-brand ms-auto" href="{% url 'properties:index' %}">{{sitename}}</a>
 
-			<!-- دکمه موبایل -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="نمایش منو">
-				<span class="oi oi-menu"></span> منو
-			</button>
+            <div class="mobile-only d-flex justify-content-between w-100">
+    			<!-- دکمه موبایل -->
+    			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="نمایش منو">
+    			<span class="oi oi-menu"></span></button>
+    			<!--SITE TITLE-->
+    			<a class="navbar-brand ms-auto" href="{% url 'properties:index' %}">{{sitename}}</a>
+            </div>
 
 		</div>
+		<!--MOBILE HAMBURGER MENU-->
+    	<div class="collapse w-100" id="ftco-nav">
+            <div class="bg-body-tertiary shadow-3 p-4 w-100">
+                <div class="container mt-5 d-flex flex-column align-items-center w-100">
+                    <ul class="list-group w-100 text-center list-unstyled">
+                        <li class="border-bottom border-2 border-secondary"><a href="{% url 'properties:index' %}" class="nav-link">خانه</a></li>
+                        <li class="border-bottom border-2 border-secondary"><a href="{% url 'properties:properties' %}" class="nav-link">املاک</a></li>
+                        <li class="border-bottom border-2 border-secondary"><a href="{% url 'properties:about' %}" class="nav-link">درباره ما</a></li>
+                        <li class="border-bottom border-2 border-secondary"><a href="{% url 'properties:contact' %}" class="nav-link">تماس با ما</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
 	</nav>
 	<!--end header-->
 	{% block main %}
 
 
-    <section id="img-land" class="d-none d-md-block position-relative overflow-hidden" style="height: 85vh;">
+    <section id="desktop-only img-land" class="d-none d-md-block position-relative overflow-hidden" style="height: 85vh;">
         <img src="{% static 'amlak/images/bg_1.jpg' %}" class="img-fluid w-100 object-fit-cover mb-n4">
     </section>
 

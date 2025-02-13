@@ -27,22 +27,6 @@
                         </div>
                         <div class="col-md align-items-end">
                             <div class="form-group text-end">
-                                <label class="form-label text-right" style="text-align: right; display: block;">نوع ملک</label>
-                                <div class="input-group">
-                                    <select name="type" class="form-control text-end">
-                                        <option class="text-dark" value="">نوع</option>
-                                        <option class="text-dark" {% if request.GET.type == "تجاری" %}selected{% endif %}>تجاری</option>
-                                        <option class="text-dark" {% if request.GET.type == "دفتر" %}selected{% endif %}>دفتر</option>
-                                        <option class="text-dark" {% if request.GET.type == "مسکونی" %}selected{% endif %}>مسکونی</option>
-                                        <option class="text-dark" {% if request.GET.type == "ویلا" %}selected{% endif %}>ویلا</option>
-                                        <option class="text-dark" {% if request.GET.type == "آپارتمان" %}selected{% endif %}>آپارتمان</option>
-                                    </select>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md align-items-end">
-                            <div class="form-group text-end">
                                 <label class="form-label text-right" style="text-align: right;display: block;">وضعیت ملک</label>
                                 <div class="input-grop">
                                         <select name="status" id="" class="form-control text-end" value='{{request.GET.status}}'>

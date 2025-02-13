@@ -21,28 +21,81 @@
             </div>
           </div>
           <div class="col-md-12 Properties-single mt-4 mb-5 ftco-animate text-right">
-            <h2>{{property.title|persian_numbers}}</h2>
+            <h2><bold>{{property.title|persian_numbers}}</bold></h2>
             <p class="rate mb-4">
               <span class="loc"><a href="#">{{property.location}}<i class="icon-map"></i></a></span>
             </p>
-            <p>{{property.description|persian_numbers}}</p>
+            <h3 style="font-size: 1.3125rem;font-weight:bold;margin:25px 0;">توضیحات اصلی</h3>
             <div class="d-md-flex mt-5 mb-5 justify-content-end text-dark">
-              <ul class="ml-md-5" dir="rtl">
-                <li><h6>متراژ زمین: {{property.lot_area|persian_numbers}} متر </h6></li>
-                <li><h6>اتاق خواب: {{property.bedroom|persian_numbers}}</h6></li>
-                <li><h6>دست‌شویی:  {{property.bathroom|persian_numbers}}</h6></li>
-                <li><h6>پارکینگ:  دارد</h6></li>
-                <li><h6>آسانسور:  {% if not property.elevator %}نامشخض {% else %}دارد{% endif %}</h6></li>
-              </ul>
-              <ul class="ml-md-5 custom-list text-end" dir="rtl">
-                <li><h6>مساحت سطح طبقه:  {% if not property.floor_area %}نامشخص {% else %}{{property.floor_area|persian_numbers}}{% endif %}</h6></li>
-                <li><h6>سال ساخت:  {{property.built_year|persian_numbers}}</h6></li>
-                <li><h6>طبقات:  {% if not property.floors %}نامشخص {% else %}{{property.floors|persian_numbers}}{% endif %}</h6></li>
-                <li><h6>سقف: جدید</h6></li>
-                <li><h6>انباری: {% if property.warehouse %}دارد {% else %}ندارد{% endif %}</h6></li>
-              </ul>
+                <ul class="ml-md-5" dir="rtl">
+                    <li>
+                        <h6> زیربنا: {{property.lot_area|persian_numbers}} متر </h6>
+                    </li>
+                    <li>
+                        <h6>اتاق خواب: {{property.bedroom|persian_numbers}}</h6>
+                    </li>
+                    <li>
+                        <h6>دست‌شویی: {{property.bathroom|persian_numbers}}</h6>
+                    </li>
+                    <li>
+                        <h6>پارکینگ: دارد</h6>
+                    </li>
+                    <li>
+                        <h6>آسانسور: {% if not property.elevator %}نامشخض {% else %}دارد{% endif %}</h6>
+                    </li>
+                </ul>
+                <ul class="ml-md-5 custom-list text-end" dir="rtl">
+                    <li>
+                        <h6> موقعیت: جنوبی</h6>
+                    </li>
+                    <li>
+                        <h6>نما: سنگ</h6>
+                    </li>
+                    <li>
+                        <h6>کابینت: چوب</h6>
+                    </li>
+                    <li>
+                        <h6>انباری: {% if property.warehouse %}دارد {% else %}ندارد{% endif %}</h6>
+                    </li>
+                    <li>
+                        <h6>سند: 6 دانگ</h6>
+                    </li>
+                </ul>
+                <ul class="ml-md-5 custom-list text-end" dir="rtl">
+                    <li>
+                        <h6>مساحت سطح طبقه: {% if not property.floor_area %}نامشخص {% else
+                            %}{{property.floor_area|persian_numbers}}{% endif %}</h6>
+                    </li>
+                    <li>
+                        <h6>سال ساخت: {{property.built_year|persian_numbers}}</h6>
+                    </li>
+                    <li>
+                        <h6>طبقات: {% if not property.floors %}نامشخص {% else %}{{property.floors|persian_numbers}}{% endif %}</h6>
+                    </li>
+                    <li>
+                        <h6>طبقه: {% if not property.floors %}نامشخص {% else %}{{property.floors|persian_numbers}}{% endif %}</h6>
+                    </li>
+                    <li>
+                        <h6>کفپوش: سرامیک</h6>
+                    </li>
+
+                </ul>
             </div>
+
+            <h2 style="font-size: 1.3125rem;font-weight:bold;margin:25px 0">امکانات و تجهیزات</h2>
+            <div class="row" dir="rtl">
+                {% for item in property.equipment.all %}
+                <div class="d-flex align-items-center mt-16 mt-lg-24 col-md-4">
+                    <img style="width:20px;height:20px;margin:10px;" src="{{item.icon.url}}" alt=""><span class="text-dark">{{item.name}}</span>
+                </div>
+                {% endfor %}
+            </div>
+            <h3 style="font-size: 1.3125rem;font-weight:bold;margin:25px 0;">توضیحات تکمیلی</h3>
+            <p>{{property.description|persian_numbers}}</p>
             <!--<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>-->
+          <div class="d-flex justify-content-center" style="margin:30px 0;">
+            <a href="tel:{{admin_tel}}"style="width:100%;" class="btn btn-dark px-1">تماس بگیرید</a>
+          </div>
           </div>
           <div class="col-md-12 properties-single ftco-animate mb-5 mt-5">
             <h4 class="mb-4 text-right">ملک‌های مرتبط</h4>
@@ -100,7 +153,7 @@
             <ul class="list-unstyled">
               {% for category in categories %}
               <li class="d-flex justify-content-between flex-row-reverse">
-                <a href="{% url 'properties:properties' %}?category_name={{category.title}}" class="text-decoration-none">{{category.title}}</a>
+                <a href="{% url 'properties:properties' %}?category={{category.title}}" class="text-decoration-none">{{category.title}}</a>
                 <span>{{ category.property_count|persian_numbers}}</span>
               </li>
               {% endfor %}
